@@ -55,9 +55,15 @@ export default function Home() {
           </p>
         </Link>
         <Link href="/practice" className="rounded-2xl border p-4">
-          <strong>3 · Practice question</strong>
+          <strong>3 · Practice</strong>
           <p className="opacity-70 text-sm">
-            One question with full explanation feedback.
+            Quick, topic, and timed questions with full explanations.
+          </p>
+        </Link>
+        <Link href="/exams" className="rounded-2xl border p-4">
+          <strong>4 · Exam Prep</strong>
+          <p className="opacity-70 text-sm">
+            Mock, subject, and comprehensive tests under time.
           </p>
         </Link>
         <div className="rounded-2xl border p-4">
