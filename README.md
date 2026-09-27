@@ -81,6 +81,7 @@ Healthcare education content must be accurate, evidence-informed, nursing-focuse
 ## Project Status
 - Current phase: PRD (see `Untitled document (2).md`) — no implementation yet
 - MVP scope defined in PRD Section 31
+- Technical stack and **no Vercel** decision: attached note at the end of the PRD, and `IMPLEMENTATION_PLAN.md` §0 (**Next.js**, **PostgreSQL**, **Better Auth**, **MinIO** — local first)
 
 ## Getting Started
-Documentation only at this stage. Implementation to follow.
+Documentation only at this stage. Implementation to follow. Dev target is `localhost` (Next.js + Docker Postgres + Docker MinIO).

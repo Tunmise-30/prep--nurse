@@ -1,6 +1,6 @@
 # PREP NURSE — Detailed Implementation Plan
 
-Derived from full PRD (`Untitled document (2).md`, 35 sections).
+Derived from full PRD (`Untitled document (2).md`, 35 sections). Local-first stack and the decision **not to use Vercel** are in the attached note after Section 35.
 Repo: https://github.com/Tunmise-30/prep--nurse.git
 
 Core promise (Sec 30): **Learn → Apply → Practise → Improve**
@@ -11,16 +11,28 @@ Product principles gate — every feature must satisfy ≥1 (Sec 33):
 
 ---
 
-## 0. Architecture Baseline (to lock before Phase 0)
+## 0. Architecture Baseline (locked — local first)
 
-**Recommended MVP stack:**
-- Web: Next.js + TypeScript + Tailwind (PWA-ready, mobile-first for Nigerian students)
-- API: Next.js API routes or NestJS / Supabase
-- DB: Postgres + Prisma — relational fits Subject→Topic→Lesson, questions, attempts
-- Auth: Auth.js / Supabase Auth (email + Google)
-- Search: Postgres Full-Text Search v1 → Meilisearch/Typesense later
-- Jobs/Reminders: cron + push/email (Resend/FCM)
-- Hosting: Vercel + Supabase/Neon, CI: lint + typecheck + test + preview
+**Named stack (use these names everywhere):**
+| Piece | Choice | Runs now |
+|---|---|---|
+| Framework | **Next.js** (App Router) + TypeScript + Tailwind | `npm run dev` on your PC |
+| Database | **PostgreSQL** (Docker) + Prisma | `localhost:5432` |
+| Authentication | **Better Auth** | Sessions in your Postgres; no cloud auth vendor |
+| File storage | **MinIO** (S3-compatible, Docker) | `localhost:9000`; lesson images can still live in `/content` |
+
+**Out of scope for now:** Vercel, Supabase, Neon, Auth.js-as-the-auth-product, any paid cloud.
+
+**Also in the local MVP (not “products” you log into):**
+- API: Next.js Route Handlers (`app/api`) — same app as the UI
+- Search: Postgres Full-Text Search v1
+- Jobs/Reminders: node-cron locally (email/push later)
+- Hosting: **none while developing** — your laptop *is* the host (`http://localhost:3000`). Hosting later = putting the same Docker + Next.js process on a VPS so other people can open a URL. Not Vercel.
+
+**Why this replaced the old “Supabase + Vercel” suggestion:**
+That combo is a hosted shortcut (auth + DB + files + deploy in one vendor). You asked for **local app + local database**, ownership of user accounts, and **no Vercel**. Better Auth + Postgres + MinIO do that without a BaaS. Supabase Auth is not “better auth”; it is someone else’s login service tied to their cloud project.
+
+**How to run (Phase 0):** Docker Compose (Postgres + MinIO) → `npx prisma migrate` → `npm run dev`. Everything stays on the machine.
 
 **Repo layout:**
 ```
@@ -190,7 +202,7 @@ Acceptance: full journey Sec 28 works end-to-end and writes to Progress.
 W1-2: Phase 0 → W3-6: Phase 1 (one subject deep) → W7-9: Phase 2 → W10-12: Phase 3 + thin Phase 4 → Pilot → Expand content → Phase 6.
 
 ## Immediate Next Tasks
-- [ ] Lock stack + repo structure
+- [x] Lock stack + repo structure (Next.js, Postgres, Better Auth, MinIO — local)
 - [ ] Finalise ND/HND curriculum map spreadsheet
 - [ ] Write 3 exemplar lessons (Hypertension, Heart Failure, Loop Diuretics)
 - [ ] Write 50 exemplar Qs with full explanations

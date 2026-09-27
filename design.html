@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prep Nurse — design</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: light-dark(#f3e6dc, #121820);
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    #pn-style-preview {
+      --pn-ink: light-dark(#3a2a38, #f4eee9);
+      --pn-muted: light-dark(#6d5a68, #c3b4bc);
+      --pn-paper: light-dark(#fff6ef, #1a242e);
+      --pn-panel: light-dark(#ffffff, #24303c);
+      --pn-line: light-dark(#ead7cc, #3a4a58);
+      --pn-lagoon: light-dark(#2f7a9a, #6bb8d4);
+      --pn-lagoon-ink: light-dark(#fff8f3, #102028);
+      --pn-coral: light-dark(#d46a54, #e89a86);
+      --pn-lilac: light-dark(#7a6bb5, #b4a6e0);
+      --pn-apricot: light-dark(#e8b86d, #e8c48a);
+      --pn-mint: light-dark(#5fa88a, #8fcfb0);
+      --pn-focus: light-dark(#2f7a9a, #6bb8d4);
+      color: var(--pn-ink);
+      font-family: "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+      font-weight: 400;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    #pn-style-preview .pn-shell {
+      background: var(--pn-paper);
+      color: var(--pn-ink);
+      padding: 20px 16px 28px;
+      min-height: 100vh;
+    }
+    #pn-style-preview .pn-kicker {
+      margin: 0 0 6px;
+      color: var(--pn-coral);
+      font-size: 12px;
+      letter-spacing: 0.02em;
+    }
+    #pn-style-preview .pn-title {
+      margin: 0 0 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+    #pn-style-preview .pn-block {
+      margin: 0 0 22px;
+    }
+    #pn-style-preview .pn-block:last-child {
+      margin-bottom: 0;
+    }
+    #pn-style-preview .pn-label {
+      margin: 0 0 10px;
+      font-size: 12px;
+      color: var(--pn-muted);
+    }
+    #pn-style-preview .pn-swatches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    #pn-style-preview .pn-swatch {
+      flex: 1 1 88px;
+      min-width: 88px;
+      background: var(--pn-panel);
+      border: 1px solid var(--pn-line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    #pn-style-preview .pn-chip {
+      height: 44px;
+    }
+    #pn-style-preview .pn-chip-lagoon { background: var(--pn-lagoon); }
+    #pn-style-preview .pn-chip-coral { background: var(--pn-coral); }
+    #pn-style-preview .pn-chip-lilac { background: var(--pn-lilac); }
+    #pn-style-preview .pn-chip-apricot { background: var(--pn-apricot); }
+    #pn-style-preview .pn-chip-mint { background: var(--pn-mint); }
+    #pn-style-preview .pn-swatch p {
+      margin: 0;
+      padding: 8px 10px 10px;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    #pn-style-preview .pn-swatch span {
+      display: block;
+      color: var(--pn-muted);
+    }
+    #pn-style-preview .pn-type {
+      background: var(--pn-panel);
+      border: 1px solid var(--pn-line);
+      border-radius: 12px;
+      padding: 16px 14px 8px;
+    }
+    #pn-style-preview .pn-path {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 14px;
+    }
+    #pn-style-preview .pn-crumb {
+      margin: 0;
+      flex: 1 1 160px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    #pn-style-preview .pn-crumb span {
+      display: block;
+      font-size: 11px;
+      color: var(--pn-muted);
+      margin-bottom: 2px;
+    }
+    #pn-style-preview .pn-crumb strong {
+      font-weight: 500;
+    }
+    #pn-style-preview .pn-crumb-course {
+      background: color-mix(in srgb, var(--pn-lilac) 18%, var(--pn-panel));
+    }
+    #pn-style-preview .pn-crumb-system {
+      background: color-mix(in srgb, var(--pn-mint) 22%, var(--pn-panel));
+    }
+    #pn-style-preview .pn-topic {
+      margin: 0 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      font-size: 26px;
+      line-height: 1.2;
+      color: var(--pn-ink);
+    }
+    #pn-style-preview .pn-type p {
+      margin: 0 0 12px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    #pn-style-preview .pn-type .pn-caption {
+      font-size: 12px;
+      color: var(--pn-muted);
+    }
+    #pn-style-preview .pn-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    #pn-style-preview .pn-btn {
+      appearance: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      min-height: 40px;
+    }
+    #pn-style-preview .pn-btn:focus-visible {
+      outline: 2px solid var(--pn-focus);
+      outline-offset: 2px;
+    }
+    #pn-style-preview .pn-btn-primary {
+      border: 1px solid var(--pn-lagoon);
+      background: var(--pn-lagoon);
+      color: var(--pn-lagoon-ink);
+    }
+    #pn-style-preview .pn-btn-secondary {
+      border: 1px solid var(--pn-coral);
+      background: color-mix(in srgb, var(--pn-coral) 14%, var(--pn-panel));
+      color: var(--pn-ink);
+    }
+    #pn-style-preview .pn-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-width: 420px;
+    }
+    #pn-style-preview .pn-field span {
+      font-size: 13px;
+      font-weight: 500;
+    }
+    #pn-style-preview .pn-input {
+      appearance: none;
+      width: 100%;
+      min-height: 40px;
+      padding: 8px 12px;
+      border: 1px solid var(--pn-line);
+      border-radius: 12px;
+      background: var(--pn-panel);
+      color: var(--pn-ink);
+      font: inherit;
+      font-size: 15px;
+    }
+    #pn-style-preview .pn-input::placeholder {
+      color: var(--pn-muted);
+    }
+    #pn-style-preview .pn-input:focus-visible {
+      outline: 2px solid var(--pn-focus);
+      outline-offset: 1px;
+      border-color: var(--pn-lagoon);
+    }
+    @media (max-width: 360px) {
+      #pn-style-preview .pn-title,
+      #pn-style-preview .pn-topic {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="pn-style-preview">
+    <p class="sr-only">Prep Nurse design: colourful calm palette, course and body system above the topic name, lagoon primary button, coral secondary, and a labelled student email field.</p>
+    <div class="pn-shell">
+      <p class="pn-kicker">Prep Nurse</p>
+      <p class="pn-title">Colourful, attractive, and calm</p>
+      <div class="pn-block">
+        <p class="pn-label">Colour</p>
+        <div class="pn-swatches">
+          <div class="pn-swatch">
+            <div class="pn-chip pn-chip-lagoon"></div>
+            <p>Lagoon<span>Primary actions</span></p>
+          </div>
+          <div class="pn-swatch">
+            <div class="pn-chip pn-chip-coral"></div>
+            <p>Coral<span>Warm accent</span></p>
+          </div>
+          <div class="pn-swatch">
+            <div class="pn-chip pn-chip-lilac"></div>
+            <p>Lilac<span>Course labels</span></p>
+          </div>
+          <div class="pn-swatch">
+            <div class="pn-chip pn-chip-mint"></div>
+            <p>Mint<span>System labels</span></p>
+          </div>
+          <div class="pn-swatch">
+            <div class="pn-chip pn-chip-apricot"></div>
+            <p>Apricot<span>Highlights</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="pn-block">
+        <p class="pn-label">Lesson heading order</p>
+        <div class="pn-type">
+          <div class="pn-path">
+            <p class="pn-crumb pn-crumb-course"><span>Course</span><strong>Medical-Surgical Nursing</strong></p>
+            <p class="pn-crumb pn-crumb-system"><span>System</span><strong>Cardiovascular</strong></p>
+          </div>
+          <h3 class="pn-topic">Hypertension</h3>
+          <p>Course and body system sit above. The topic name sits below, larger, as the thing the student came to study.</p>
+          <p class="pn-caption">Georgia for the topic. Segoe UI for course, system, buttons, and fields.</p>
+        </div>
+      </div>
+      <div class="pn-block">
+        <p class="pn-label">Button</p>
+        <div class="pn-actions">
+          <button class="pn-btn pn-btn-primary" type="button">Continue learning</button>
+          <button class="pn-btn pn-btn-secondary" type="button">Save note</button>
+        </div>
+      </div>
+      <div class="pn-block">
+        <label class="pn-field">
+          <span>Student email</span>
+          <input class="pn-input" type="email" name="email" autocomplete="off" placeholder="mary.okonkwo@school.edu.ng" value="mary.okonkwo@school.edu.ng">
+        </label>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
