@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root {
+  --pn-lagoon: #2f7a9a;
+  --pn-coral: #d46a54;
+  --pn-lilac: #7a6bb5;
+  --pn-mint: #5fa88a;
+  --pn-apricot: #e8b86d;
+  --background: #fff6ef;
+  --foreground: #3a2a38;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1a242e;
+    --foreground: #f4eee9;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
