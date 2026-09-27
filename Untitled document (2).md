@@ -7,6 +7,8 @@
 **Primary Market:** Nigerian nursing students, with international nursing knowledge and practice incorporated where relevant  
 **Product Type:** Nursing learning, practice and examination-preparation platform
 
+> **Notes (attached, not numbered PRD sections):** After Section 35: **Attached note — technical decisions** (local-first stack; **not Vercel**) and **Attached note — visual design**.
+
 ---
 
 # **1\. Product Vision**
@@ -1001,4 +1003,68 @@ The most meaningful outcome is:
 > Understand your strengths, weaknesses and improvement.
 
 The long-term vision is for Prep Nurse to become a student's **personal nursing study companion**—a place where they can learn a concept, practise it, apply it clinically, prepare for their examination and clearly see their progress.
+
+---
+
+> **Attached note — technical decisions**  
+> *This is a note attached to the PRD (sections 1–35). It is not a new numbered product section. Decision owner: Tunmise.*
+
+The implementation plan had listed a cloud shortcut (Supabase Auth, hosted Postgres, Vercel). That was rejected. Prep Nurse must run **locally first**: the app and the database on the developer’s machine. Cloud vendors are not required to start.
+
+**Tunmise decided not to use Vercel.** Vercel will **not** be used for Prep Nurse. Next.js will still be the web framework; using Next.js does **not** mean deploying on Vercel. While building, the laptop is the host (`http://localhost:3000`). If students later need a public URL, the same app can run on a machine or VPS we control — not Vercel.
+
+**Named stack**
+
+| Piece | Choice | Requirement |
+|---|---|---|
+| Framework | **Next.js** (App Router) + TypeScript + Tailwind | Runs with `npm run dev` on the local machine |
+| Database | **PostgreSQL** (Docker) + Prisma | Local database (`localhost`). Not Neon. Not Supabase-hosted Postgres. |
+| Authentication | **Better Auth** | Users and sessions live in **our** Postgres. Not Supabase Auth, not Clerk, not Firebase. |
+| File storage | **MinIO** (local, S3-compatible) | Named storage for uploads (avatars, diagrams, PDFs, videos). Lesson Markdown may still live in the repo under `/content`. |
+
+**Also local, not separate products:** API via Next.js route handlers in the same app; search via Postgres full-text search at first; reminders via local jobs later.
+
+**Why not Supabase Auth.** Supabase Auth is a hosted login service. Accounts would live in someone else’s project. It was only listed earlier because it bundles auth + database + files for a fast cloud MVP. That does not match “run the app and database locally” or owning student accounts. **Better Auth** is the required alternative: open source, TypeScript, sessions in our Postgres, email/password first (Google later if wanted). Rolling custom password hashing for MVP is not preferred.
+
+**Why file storage is in the stack.** The first PRD described lessons as content, not a storage **service**. Git Markdown is enough for authored lessons. Named storage is required when files are uploaded or binary and should not live in git (profile photos, diagrams, PDFs, skill videos, admin-uploaded assets). MinIO provides that locally with an S3-shaped API so the same upload code can later point at a real bucket without rewriting.
+
+**What “hosting” means.** Hosting is where the running program lives so other people can open it. It is not the framework and not the database. Now: no hosting vendor; the developer’s computer hosts the app. Later (optional): a computer that stays on (VPS, school server, or similar) runs the same Next.js app, Postgres, and MinIO. **Never (this decision): Vercel.**
+
+**Out of scope.** Do not introduce Vercel, Supabase, Neon, or paid cloud auth/storage to satisfy this PRD. Implementation details also live in `IMPLEMENTATION_PLAN.md` section 0.
+
+---
+
+> **Attached note — visual design**  
+> *This is a second note attached to the PRD (sections 1–35). It is not a new numbered product section. Decision owner: Tunmise. Preview: `design.html`.*
+
+Prep Nurse should look **colourful, attractive, and calm** — not grey, not hospital-sterile, and not the earlier teal/navy/sand palette. All previous preview colours are replaced.
+
+**New colour names (use these; do not reuse the old teal/navy/sand/paper/ink set):**
+
+| Name | Job |
+|---|---|
+| Lagoon | Primary buttons and focus |
+| Coral | Warm accent and secondary actions |
+| Lilac | Course labels |
+| Mint | Body-system labels |
+| Apricot | Highlights |
+| Blush paper / plum ink | Page and text (light and dark) |
+
+The living preview is `design.html` in the repository. Light and dark follow the device theme.
+
+**Lesson heading order.** On a lesson (and in the design preview), show **course**, then **system**, **above** the **topic**. Example: course *Medical-Surgical Nursing* and system *Cardiovascular* on the first row; topic *Hypertension* below, larger. Students should see where they are in the curriculum before the topic name. Do not put the topic first with the course/system as a small subtitle underneath.
+
+---
+
+> **Attached note — website vs app + Phase 0 prototype scope**
+> *This is a third note attached to the PRD (sections 1–35). It is not a new numbered product section. Decision owner: Tunmise. Date: 2026-09-27. Prototype: `app.html` (separate from `design.html` preview).*
+>
+> **Q: What are you building — a website or an app?**
+> **A: A website first that works like an app.** It opens in a browser on phone or laptop, no store install. It is mobile-first and can later be wrapped as an installable app (PWA) without rewriting. A native store app is out of scope for MVP.
+>
+> **Why no database, no storage yet?** The user noticed correctly. Phase 0 prototype (`app.html`) is one working page with no sign-in, no database, no tests, no deployment. This is intentional for the assignment: prove one page opens locally and works. Database (local PostgreSQL + Prisma), auth (Better Auth), and file storage (MinIO) from the technical note remain planned for the next phases — they are not removed, just not in this first page.
+>
+> **What this prototype must do:** open locally in a browser, show Prep Nurse home (Continue Learning with course → system → topic order, Today's Goal, Needs Attention), one sample Hypertension lesson excerpt, one practice question with explanation feedback, and progress. One file, no build tools, no internet needed.
+>
+> **What comes next after this page:** Phase 0 remainder (Next.js setup + onboarding + curriculum map), then Phase 1 LEARN (full lessons), Phase 2 PRACTICE (question engine), Phase 3 EXAM PREP, Phase 4 PROGRESS + supporting features. See `IMPLEMENTATION_PLAN.md`.
 

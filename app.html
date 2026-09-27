@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prep Nurse — Working Prototype (Phase 0)</title>
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: light-dark(#f7e9de, #121820);
+    color: light-dark(#3a2a38, #f4eee9);
+    font-family: "Segoe UI", system-ui, sans-serif;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 20px 16px 40px; }
+  .card {
+    background: light-dark(#fff6ef, #1a242e);
+    border: 1px solid light-dark(#ead7cc, #3a4a58);
+    border-radius: 14px;
+    padding: 16px;
+    margin: 0 0 16px;
+  }
+  h1 { font-family: Georgia, serif; font-weight: 400; margin: 0 0 4px; font-size: 28px; }
+  .sub { color: light-dark(#6d5a68, #c3b4bc); margin: 0 0 16px; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 6px; }
+  .pill-course {
+    background: light-dark(#7a6bb5, #b4a6e0); color: #fff;
+    font-size: 12px; padding: 3px 10px; border-radius: 999px;
+  }
+  .pill-system {
+    background: light-dark(#5fa88a, #8fcfb0); color: #fff;
+    font-size: 12px; padding: 3px 10px; border-radius: 999px;
+  }
+  .topic { font-size: 22px; margin: 2px 0 8px; }
+  .btn {
+    background: light-dark(#2f7a9a, #6bb8d4);
+    color: light-dark(#fff8f3, #102028);
+    border: none; border-radius: 10px; padding: 10px 16px;
+    font-size: 15px; cursor: pointer; margin-top: 8px;
+  }
+  .btn-secondary {
+    background: transparent; color: light-dark(#d46a54, #e89a86);
+    border: 1px solid light-dark(#d46a54, #e89a86);
+  }
+  .bar { height: 10px; border-radius: 999px; background: light-dark(#ead7cc, #3a4a58); overflow: hidden; margin-top: 8px; }
+  .bar > div { height: 100%; width: 35%; background: light-dark(#e8b86d, #e8c48a); }
+  .opt { display: block; width: 100%; text-align: left; margin: 8px 0; padding: 10px 12px;
+    border-radius: 10px; border: 1px solid light-dark(#ead7cc, #3a4a58);
+    background: light-dark(#ffffff, #24303c); color: inherit; cursor: pointer; font-size: 15px; }
+  .opt.correct { border-color: #5fa88a; background: light-dark(#e6f4ec, #1e3a2c); }
+  .opt.wrong { border-color: #d46a54; background: light-dark(#fbe9e4, #3d2420); }
+  #feedback { display: none; margin-top: 12px; padding: 12px; border-radius: 10px;
+    background: light-dark(#fff1d6, #2c2a1e); border: 1px solid light-dark(#e8b86d, #e8c48a); }
+  .small { font-size: 13px; color: light-dark(#6d5a68, #c3b4bc); }
+  .tag { font-size: 12px; color: light-dark(#d46a54, #e89a86); margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="tag">PREP NURSE · Phase 0 prototype · one working page, no sign-in, no database yet</p>
+  <h1>Good evening, Mary</h1>
+  <p class="sub">What am I learning? How am I doing? What is weak? What next?</p>
+
+  <div class="card">
+    <div class="row">
+      <span class="pill-course">Medical-Surgical Nursing</span>
+      <span class="pill-system">Cardiovascular</span>
+    </div>
+    <div class="topic">Hypertension — Continue Learning</div>
+    <p>High blood pressure damages heart, brain, kidneys over time. Nurses check BP correctly, ask about headache, vision changes, chest pain, and teach low-salt diet, exercise, and taking drugs daily.</p>
+    <button class="btn" onclick="document.getElementById('lesson').scrollIntoView({behavior:'smooth'})">Open lesson excerpt</button>
+  </div>
+
+  <div class="card">
+    <strong>Today's Goal — 20 questions</strong>
+    <div class="bar"><div id="goalbar"></div></div>
+    <p class="small"><span id="done">7</span> of 20 done · <span id="acc">68%</span> average accuracy</p>
+    <button class="btn btn-secondary" onclick="document.getElementById('practice').scrollIntoView({behavior:'smooth'})">Practise now</button>
+  </div>
+
+  <div class="card">
+    <strong>Needs Attention</strong>
+    <p>Pharmacology — Antibiotics. You missed 3 of the last 5. Recommended: 10 questions on antimicrobial drugs.</p>
+  </div>
+
+  <div class="card" id="lesson">
+    <div class="row">
+      <span class="pill-course">Medical-Surgical Nursing</span>
+      <span class="pill-system">Cardiovascular</span>
+    </div>
+    <div class="topic">Hypertension</div>
+    <p><strong>Learn:</strong> Hypertension = BP ≥ 140/90 mmHg on repeated checks.</p>
+    <p><strong>Understand:</strong> Heart pumps harder against tight vessels. Kidneys hold salt and water. Risk rises with age, family history, salt, alcohol, low activity.</p>
+    <p><strong>Apply:</strong> A patient arrives with severe headache, blurred vision, BP 190/120. The nurse checks airway, breathing, circulation first, repeats BP, and calls for urgent help — this may be hypertensive emergency.</p>
+    <p class="small">Educational information only — not medical advice for a real patient.</p>
+  </div>
+
+  <div class="card" id="practice">
+    <strong>Practice — 1 question (tap an answer)</strong>
+    <p>A patient has severe headache, blurred vision, BP 190/120 mmHg. What should the nurse assess first?</p>
+    <button class="opt" data-c="0" onclick="answer(0, this)">A. What the patient ate for breakfast</button>
+    <button class="opt" data-c="0" onclick="answer(1, this)">B. The patient's favourite music</button>
+    <button class="opt" data-c="1" onclick="answer(2, this)">C. Airway, breathing, circulation + repeat BP, urgent review</button>
+    <button class="opt" data-c="0" onclick="answer(3, this)">D. Discharge the patient home</button>
+    <div id="feedback">
+      <strong id="fb-title">Correct.</strong>
+      <p id="fb-body">C is correct: ABCs first, confirm the high reading, escalate — possible hypertensive emergency.</p>
+      <p class="small">Why others are wrong: food/music do not address danger; discharge is unsafe. Principle: prioritise life-threatening findings. Review: Hypertension → Nursing management.</p>
+      <button class="btn btn-secondary" onclick="resetQ()">Try again</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <strong>Your Progress (this page only, no database yet)</strong>
+    <p class="small">Questions tried here: <span id="tried">0</span> · Correct here: <span id="ok">0</span></p>
+    <p class="small">Next phases add: sign-in, local database (PostgreSQL), storage (MinIO), full lessons, mocks, and real progress tracking. See IMPLEMENTATION_PLAN.md.</p>
+  </div>
+</div>
+
+<script>
+  let tried = 0, ok = 0, locked = false;
+  function answer(i, el) {
+    if (locked) return;
+    locked = true;
+    tried++;
+    const correct = el.getAttribute('data-c') === '1';
+    if (correct) ok++;
+    document.querySelectorAll('.opt').forEach(b => {
+      if (b.getAttribute('data-c') === '1') b.classList.add('correct');
+    });
+    if (!correct) el.classList.add('wrong');
+    document.getElementById('tried').textContent = tried;
+    document.getElementById('ok').textContent = ok;
+    const fb = document.getElementById('feedback');
+    fb.style.display = 'block';
+    document.getElementById('fb-title').textContent = correct ? 'Correct.' : 'Not quite — here is why.';
+    document.getElementById('done').textContent = 7 + tried;
+    fb.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+  function resetQ() {
+    locked = false;
+    document.querySelectorAll('.opt').forEach(b => b.classList.remove('correct','wrong'));
+    document.getElementById('feedback').style.display = 'none';
+  }
+</script>
+</body>
+</html>
