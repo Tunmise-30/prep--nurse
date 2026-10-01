@@ -50,10 +50,16 @@ export default function Dashboard() {
       </div>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        <Link href="/curriculum" className="rounded-2xl border p-4">
-          <strong>Learn — Subjects & lessons</strong>
+        <Link href="/learn" className="rounded-2xl border p-4">
+          <strong>Learn — the full school</strong>
           <p className="opacity-70 text-sm">
-            Read a topic with real patient examples, then try its questions.
+            Each topic broken down + drug doses + patient case + questions.
+          </p>
+        </Link>
+        <Link href="/curriculum" className="rounded-2xl border p-4">
+          <strong>Subjects — body systems map</strong>
+          <p className="opacity-70 text-sm">
+            All Med-Surg systems and conditions. ✓ = lesson ready.
           </p>
         </Link>
         <Link href="/practice" className="rounded-2xl border p-4">

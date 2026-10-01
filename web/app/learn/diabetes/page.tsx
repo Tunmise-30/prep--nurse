@@ -1,10 +1,11 @@
 import Link from "next/link";
+import LessonTools from "../LessonTools";
 
 export default function DiabetesLesson() {
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-6">
-      <Link href="/dashboard" className="text-sm underline">
-        ← Home
+      <Link href="/learn" className="text-sm underline">
+        ← All lessons
       </Link>
       <div className="mt-2 flex flex-wrap gap-2 text-xs text-white">
         <span
@@ -21,59 +22,167 @@ export default function DiabetesLesson() {
         </span>
       </div>
       <h1 className="mt-1 font-serif text-3xl">Diabetes Mellitus</h1>
-      <p className="opacity-70">
-        Course, then system, above the topic — as the PRD design note requires.
-      </p>
 
       <div className="mt-4 rounded-2xl border p-4">
-        <strong>Learn</strong>
+        <strong>1 · Definition & types</strong>
         <p>
-          Diabetes = blood sugar stays too high because insulin is missing
-          (Type 1) or does not work well (Type 2). Normal fasting sugar is about
-          70–100 mg/dL; diabetes is fasting ≥ 126 mg/dL on repeat checks.
+          Diabetes = blood sugar stays too high. Type 1: body kills its insulin
+          cells (needs insulin for life, often young). Type 2: insulin works
+          poorly + body makes less (lifestyle + tablets, later insulin).
+          Fasting ≥126 mg/dL twice = diabetes; HbA1c ≥6.5% confirms control
+          level.
         </p>
       </div>
+
       <div className="mt-3 rounded-2xl border p-4">
-        <strong>Understand</strong>
+        <strong>2 · Causes & risk factors</strong>
         <p>
-          Insulin moves sugar from blood into cells. Without it, sugar stays in
-          blood while cells starve. Causes: Type 1 — body attacks insulin
-          cells; Type 2 — overweight, low activity, family history, age.
-          Warning signs: much urine, much thirst, hunger, tiredness, weight
-          loss, slow wound healing, blurry vision.
+          Type 1: auto-immune, genes. Type 2: overweight, big belly, low
+          activity, sugary drinks, family history, age, pregnancy diabetes
+          history. Nigeria&apos;s rising sugar intake + okada lifestyle feeds it.
         </p>
       </div>
+
       <div className="mt-3 rounded-2xl border p-4">
-        <strong>Apply</strong>
+        <strong>3 · What happens in the body</strong>
         <p>
-          A 55-year-old drinks water all day, urinates many times at night, and
-          has a foot sore that will not heal. Fasting sugar is 210 mg/dL. The
-          nurse checks ABCs, asks about thirst, urination, weight change,
-          medicines, and diet, checks feet and hydration, and arranges urgent
-          review — new likely diabetes needing confirmation and teaching.
+          Insulin opens cells to sugar. Without it, sugar piles in blood while
+          cells starve → body burns fat → acids (ketoacidosis in Type 1). Years
+          of high sugar silently damage eyes, kidneys, nerves, feet, heart,
+          brain.
         </p>
       </div>
+
       <div className="mt-3 rounded-2xl border p-4">
-        <strong>Nursing management</strong>
+        <strong>4 · Signs & symptoms</strong>
         <p>
-          Check sugar as ordered, give drugs/insulin safely (right patient,
-          drug, dose, time, route), watch for low sugar (sweating, shaking,
-          confusion — give fast sugar if awake and allowed), care for feet daily,
-          teach diet, exercise, and taking drugs every day.
+          The 4 Ps: polyuria (much urine), polydipsia (much thirst), polyphagia
+          (hunger) + weight loss, tiredness. Plus: slow wounds, itching,
+          blurry vision, numb feet. Danger: fruity breath + vomiting + deep
+          breathing = ketoacidosis emergency.
         </p>
       </div>
+
       <div className="mt-3 rounded-2xl border p-4">
-        <strong>Review</strong>
+        <strong>5 · Assessment & investigations</strong>
         <p>
-          Remember: pee much, drink much, tired, slow healing → think sugar.
-          Low sugar is the urgent danger during treatment — know its signs.
+          Fasting sugar, random sugar, HbA1c, urine sugar/ketones, weight/BMI,
+          BP, feet exam (cuts, pulses, feeling), eyes, kidneys. Ask: thirst,
+          urine, weight, family, diet, activity, drugs, pregnancy.
+        </p>
+      </div>
+
+      <div className="mt-3 rounded-2xl border p-4">
+        <strong>6 · Medical management</strong>
+        <p>
+          Food (regular meals, less sugar/refined starch, vegetables, portion
+          control), 30-minute walks, weight loss, no smoking, foot care. Tablets
+          when lifestyle is not enough; insulin when tablets fail, in Type 1,
+          pregnancy, or crisis.
+        </p>
+      </div>
+
+      <div className="mt-3 rounded-2xl border p-4">
+        <strong>7 · Drug regimen (learn the pattern)</strong>
+        <table className="mt-2 w-full text-sm">
+          <tbody>
+            <tr className="border-b">
+              <td className="py-2 pr-2 font-bold">Metformin</td>
+              <td className="py-2">
+                First tablet for Type 2 (e.g. 500 mg–1 g with meals). Cuts
+                liver sugar. Take with food; watch stomach upset, B12 over
+                years. Stop before contrast scans per order.
+              </td>
+            </tr>
+            <tr className="border-b">
+              <td className="py-2 pr-2 font-bold">Sulphonylureas</td>
+              <td className="py-2">
+                e.g. glibenclamide/gliclazide — push pancreas to release
+                insulin. Danger: LOW sugar. Eat regularly; carry sugar always.
+              </td>
+            </tr>
+            <tr className="border-b">
+              <td className="py-2 pr-2 font-bold">Insulin</td>
+              <td className="py-2">
+                Types: rapid (meals), intermediate/long (basal). Rotate
+                injection sites (belly, thigh), store cold, check dose twice.
+                Low sugar is the killer side effect.
+              </td>
+            </tr>
+            <tr>
+              <td className="py-2 pr-2 font-bold">Low-sugar rescue</td>
+              <td className="py-2">
+                Awake + can swallow: 15 g fast sugar (glucose/sweet drink),
+                recheck in 15 min, repeat, then snack. Confused/unconscious:
+                nothing by mouth — urgent IV glucose/glucagon per order.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p className="mt-2 text-xs opacity-70">
+          Example doses for learning — always follow the prescriber and your
+          local guideline. Nurses never prescribe.
+        </p>
+      </div>
+
+      <div className="mt-3 rounded-2xl border p-4">
+        <strong>8 · Nursing management</strong>
+        <p>
+          Check sugar as ordered, give drugs/insulin with double-checks, watch
+          for low sugar (sweat, shake, confusion), inspect feet every shift,
+          teach diet + exercise + daily drugs + carrying sugar. Support without
+          shame — diabetes is lifelong.
+        </p>
+      </div>
+
+      <div className="mt-3 rounded-2xl border p-4">
+        <strong>9 · Complications & prevention</strong>
+        <p>
+          Eye loss, kidney failure, foot amputation, stroke, heart attack, keto
+          coma, low-sugar coma. Prevention: healthy weight, active life, less
+          sugar, yearly sugar checks after 35 or with family history.
+        </p>
+      </div>
+
+      <div className="mt-3 rounded-2xl border p-4">
+        <strong>10 · Real patient case</strong>
+        <p>
+          Mr B, 55, driver: drinks 5 litres daily, urinates all night, lost 8
+          kg, foot sore unhealed 3 weeks, fasting sugar 210. Nurse checks
+          hydration, feet, BP, weight; confirms repeat sugar + HbA1c; teaching
+          starts (meals, walking, drugs, foot care, carrying sugar); eye and
+          kidney referrals booked.
+        </p>
+      </div>
+
+      <div className="mt-3 rounded-2xl border p-4">
+        <strong>11 · Practise now</strong>
+        <p>
+          Q1: Insulin patient sweating + shaking + confused — priority? → Low
+          sugar: fast sugar if awake, recheck, escalate.
         </p>
         <p>
-          Next:{" "}
+          Q2: Which trio points to high sugar? → Much urine + much thirst + slow
+          healing.
+        </p>
+        <p className="mt-1">
+          More:{" "}
           <Link href="/practice" className="underline">
-            practise one question
+            practise questions
           </Link>
-          .
+        </p>
+      </div>
+
+      <LessonTools lesson="Diabetes Mellitus" />
+
+      <div className="mt-3 rounded-2xl border p-4">
+        <strong>Review in one line</strong>
+        <p>
+          Sugar high, cells hungry → 4 Ps + slow healing → food + movement +
+          tablets/insulin → fear low sugar most. Next:{" "}
+          <Link href="/learn/stroke" className="underline">
+            Stroke
+          </Link>
         </p>
       </div>
       <p className="mt-3 text-xs opacity-60">
