@@ -103,7 +103,7 @@ export default function PracticePage() {
   if (!mode || !quiz.length) {
     return (
       <div className="mx-auto w-full max-w-2xl px-4 py-6">
-        <Link href="/" className="text-sm underline">
+        <Link href="/dashboard" className="text-sm underline">
           ← Home
         </Link>
         <h1 className="mt-2 font-serif text-3xl">Practice</h1>
@@ -173,7 +173,7 @@ export default function PracticePage() {
   if (finished) {
     return (
       <div className="mx-auto w-full max-w-2xl px-4 py-6">
-        <Link href="/" className="text-sm underline">
+        <Link href="/dashboard" className="text-sm underline">
           ← Home
         </Link>
         <h1 className="mt-2 font-serif text-3xl">Result</h1>
@@ -230,7 +230,7 @@ export default function PracticePage() {
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-6">
       <div className="flex items-center justify-between">
-        <Link href="/" className="text-sm underline">
+        <Link href="/dashboard" className="text-sm underline">
           ← Home
         </Link>
         {mode === "timed" && (

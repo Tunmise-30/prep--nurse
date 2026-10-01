@@ -45,8 +45,12 @@ export const EXAMS: ExamConfig[] = [
     id: "comprehensive-1",
     title: "Comprehensive Test 1",
     kind: "Comprehensive",
-    minutes: 10,
-    questionIds: QUESTIONS.slice(0, 10).map((q) => q.id),
+    minutes: 12,
+    questionIds: [
+      ...QUESTIONS.slice(0, 8).map((q) => q.id),
+      "stroke-1",
+      "pneu-1",
+    ],
     description:
       "Mixed subjects: Med-Surg, Fundamentals, and Pharmacology in one paper.",
   },

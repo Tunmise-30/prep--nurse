@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function HeartFailureLesson() {
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-6">
-      <Link href="/" className="text-sm underline">
+      <Link href="/dashboard" className="text-sm underline">
         ← Home
       </Link>
       <div className="mt-2 flex flex-wrap gap-2 text-xs text-white">

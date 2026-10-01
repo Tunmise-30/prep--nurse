@@ -18,7 +18,7 @@ export default function OnboardingPage() {
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-6">
-      <Link href="/" className="text-sm underline">
+      <Link href="/dashboard" className="text-sm underline">
         ← Home
       </Link>
       <h1 className="mt-2 font-serif text-3xl">Join Prep Nurse</h1>
