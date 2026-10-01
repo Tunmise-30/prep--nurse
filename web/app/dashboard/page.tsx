@@ -68,6 +68,24 @@ export default function Dashboard() {
             Mock, subject, and comprehensive tests under time.
           </p>
         </Link>
+        <Link href="/progress" className="rounded-2xl border p-4">
+          <strong>Progress — My level</strong>
+          <p className="opacity-70 text-sm">
+            Scores per topic, weak areas, revise links, daily goals.
+          </p>
+        </Link>
+        <Link href="/search" className="rounded-2xl border p-4">
+          <strong>Search — Find anything</strong>
+          <p className="opacity-70 text-sm">
+            Lessons and questions by keyword.
+          </p>
+        </Link>
+        <Link href="/flashcards" className="rounded-2xl border p-4">
+          <strong>Flashcards — Quick facts</strong>
+          <p className="opacity-70 text-sm">
+            Drugs, numbers, and must-know facts. Tap to flip.
+          </p>
+        </Link>
         <div className="rounded-2xl border p-4">
           <strong>Today&apos;s Goal — 20 questions</strong>
           <p className="opacity-70 text-sm">
