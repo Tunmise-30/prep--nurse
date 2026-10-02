@@ -46,6 +46,27 @@ export const LESSONS: LessonEntry[] = [
     keywords: "cough fever chest pain breathing oxygen sputum confusion elderly",
   },
   {
+    title: "Pulmonary Tuberculosis",
+    href: "/learn/tuberculosis",
+    course: "Medical-Surgical Nursing",
+    system: "Respiratory",
+    keywords: "cough 2 weeks night sweats weight loss GeneXpert DOTS rifampicin",
+  },
+  {
+    title: "Typhoid Fever",
+    href: "/learn/typhoid",
+    course: "Medical-Surgical Nursing",
+    system: "Gastrointestinal",
+    keywords: "step-ladder fever slow pulse belly pain perforation culture",
+  },
+  {
+    title: "Anaemia (incl. Sickle Cell)",
+    href: "/learn/anaemia",
+    course: "Medical-Surgical Nursing",
+    system: "Haematology",
+    keywords: "pale tired iron sickle crisis pain folic acid transfusion",
+  },
+  {
     title: "Hand Hygiene",
     href: "/learn/hand-hygiene",
     course: "Fundamentals of Nursing",

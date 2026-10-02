@@ -165,7 +165,7 @@ export default function LoopDiureticsLesson() {
         </p>
       </div>
 
-      <LessonTools lesson="Loop Diuretics" />
+      <LessonTools lesson="Loop Diuretics (Furosemide)" />
 
       <div className="mt-3 rounded-2xl border p-4">
         <strong>Review in one line</strong>

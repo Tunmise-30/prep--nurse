@@ -28,9 +28,9 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
     system: "Respiratory",
     conditions: [
       { title: "Pneumonia", href: "/learn/pneumonia" },
+      { title: "Pulmonary Tuberculosis", href: "/learn/tuberculosis" },
       { title: "Asthma" },
       { title: "COPD" },
-      { title: "Pulmonary Tuberculosis" },
       { title: "Pleural Effusion" },
     ],
   },
@@ -64,8 +64,8 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
   {
     system: "Gastrointestinal",
     conditions: [
+      { title: "Typhoid Fever", href: "/learn/typhoid" },
       { title: "Peptic Ulcer Disease" },
-      { title: "Typhoid Fever" },
       { title: "Acute Diarrhoea & Dehydration" },
       { title: "Liver Cirrhosis" },
       { title: "Appendicitis" },
@@ -74,7 +74,7 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
   {
     system: "Haematology",
     conditions: [
-      { title: "Anaemia (incl. Sickle Cell)" },
+      { title: "Anaemia (incl. Sickle Cell)", href: "/learn/anaemia" },
       { title: "Malaria (severe)" },
       { title: "Bleeding Disorders" },
     ],

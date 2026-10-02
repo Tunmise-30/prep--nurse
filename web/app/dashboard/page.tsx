@@ -92,6 +92,12 @@ export default function Dashboard() {
             Drugs, numbers, and must-know facts. Tap to flip.
           </p>
         </Link>
+        <Link href="/saved" className="rounded-2xl border p-4">
+          <strong>Saved — My lessons & notes</strong>
+          <p className="opacity-70 text-sm">
+            Everything you starred, with your notes.
+          </p>
+        </Link>
         <div className="rounded-2xl border p-4">
           <strong>Today&apos;s Goal — 20 questions</strong>
           <p className="opacity-70 text-sm">
