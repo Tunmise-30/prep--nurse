@@ -41,3 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 devserver.log
+
+# keep the example so others know which keys to set
+!.env.example
