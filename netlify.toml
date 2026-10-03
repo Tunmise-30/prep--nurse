@@ -1,0 +1,7 @@
+# Netlify deploys the Next.js app with its built-in Next Runtime.
+# Build settings are auto-detected; env keys (Paystack) are set in
+# Netlify dashboard → Site settings → Environment variables.
+[build]
+  base = "web"
+  command = "npm run build"
+  publish = "web/.next"

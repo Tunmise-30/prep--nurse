@@ -24,6 +24,9 @@ export async function POST(request: Request) {
     );
   }
 
+  const origin =
+    request.headers.get("origin") || "http://localhost:3000";
+
   const res = await fetch("https://api.paystack.co/transaction/initialize", {
     method: "POST",
     headers: {
@@ -33,7 +36,7 @@ export async function POST(request: Request) {
     body: JSON.stringify({
       email,
       amount: 100000,
-      callback_url: "http://localhost:3000/premium/success",
+      callback_url: `${origin}/premium/success`,
       metadata: { plan: "prep-nurse-premium-test", app: "prep-nurse" },
     }),
   });
