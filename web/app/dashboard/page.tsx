@@ -98,6 +98,12 @@ export default function Dashboard() {
             Everything you starred, with your notes.
           </p>
         </Link>
+        <Link href="/premium" className="rounded-2xl border p-4">
+          <strong>Premium — Test payment</strong>
+          <p className="opacity-70 text-sm">
+            Paystack test mode. No real money moves.
+          </p>
+        </Link>
         <div className="rounded-2xl border p-4">
           <strong>Today&apos;s Goal — 20 questions</strong>
           <p className="opacity-70 text-sm">
