@@ -88,6 +88,27 @@ export const LESSONS: LessonEntry[] = [
     keywords: "seizure fit status side position rescue drug adherence",
   },
   {
+    title: "Meningitis",
+    href: "/learn/meningitis",
+    course: "Medical-Surgical Nursing",
+    system: "Neurological",
+    keywords: "fever stiff neck rash fontanelle ceftriaxone lumbar puncture",
+  },
+  {
+    title: "Asthma",
+    href: "/learn/asthma",
+    course: "Medical-Surgical Nursing",
+    system: "Respiratory",
+    keywords: "wheeze spacer salbutamol preventer silent chest trigger",
+  },
+  {
+    title: "Urinary Tract Infection",
+    href: "/learn/uti",
+    course: "Medical-Surgical Nursing",
+    system: "Renal & Urinary",
+    keywords: "burning frequency culture nitrofurantoin catheter pregnancy",
+  },
+  {
     title: "Hand Hygiene",
     href: "/learn/hand-hygiene",
     course: "Fundamentals of Nursing",

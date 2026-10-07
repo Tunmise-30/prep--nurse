@@ -29,7 +29,7 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
     conditions: [
       { title: "Pneumonia", href: "/learn/pneumonia" },
       { title: "Pulmonary Tuberculosis", href: "/learn/tuberculosis" },
-      { title: "Asthma" },
+      { title: "Asthma", href: "/learn/asthma" },
       { title: "COPD" },
       { title: "Pleural Effusion" },
     ],
@@ -39,7 +39,7 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
     conditions: [
       { title: "Stroke", href: "/learn/stroke" },
       { title: "Epilepsy", href: "/learn/epilepsy" },
-      { title: "Meningitis" },
+      { title: "Meningitis", href: "/learn/meningitis" },
       { title: "Head Injury" },
     ],
   },
@@ -55,9 +55,9 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
   {
     system: "Renal & Urinary",
     conditions: [
+      { title: "Urinary Tract Infection", href: "/learn/uti" },
       { title: "Acute Kidney Injury" },
       { title: "Chronic Kidney Disease" },
-      { title: "Urinary Tract Infection" },
       { title: "Kidney Stones" },
     ],
   },

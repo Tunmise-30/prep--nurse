@@ -179,6 +179,15 @@ export default function PracticePage() {
               FAST-positive in under an hour: what first?
             </p>
           </Link>
+          <Link
+            href="/scenarios/asthma"
+            className="rounded-2xl border p-4"
+          >
+            <strong>Scenario — Wheeze Going Quiet</strong>
+            <p className="text-sm opacity-70">
+              Loud wheeze fades but child worsens: decide fast.
+            </p>
+          </Link>
         </div>
         <p className="mt-3 text-xs opacity-60">
           Bank: {QUESTIONS.length} questions · Weak-area, mixed, and exam modes
