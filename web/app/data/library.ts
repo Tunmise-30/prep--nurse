@@ -109,6 +109,27 @@ export const LESSONS: LessonEntry[] = [
     keywords: "burning frequency culture nitrofurantoin catheter pregnancy",
   },
   {
+    title: "Acute Diarrhoea & Dehydration",
+    href: "/learn/diarrhoea",
+    course: "Medical-Surgical Nursing",
+    system: "Gastrointestinal",
+    keywords: "ORS zinc dehydration plan A B C sunken eyes cholera rotavirus",
+  },
+  {
+    title: "Head Injury",
+    href: "/learn/head-injury",
+    course: "Medical-Surgical Nursing",
+    system: "Neurological",
+    keywords: "concussion coma pupils lucid interval helmet neurosurgery",
+  },
+  {
+    title: "COPD",
+    href: "/learn/copd",
+    course: "Medical-Surgical Nursing",
+    system: "Respiratory",
+    keywords: "smoker spirometry inhaler flare pursed lip emphysema bronchitis",
+  },
+  {
     title: "Hand Hygiene",
     href: "/learn/hand-hygiene",
     course: "Fundamentals of Nursing",

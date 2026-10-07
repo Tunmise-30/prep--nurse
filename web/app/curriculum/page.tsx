@@ -30,7 +30,7 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
       { title: "Pneumonia", href: "/learn/pneumonia" },
       { title: "Pulmonary Tuberculosis", href: "/learn/tuberculosis" },
       { title: "Asthma", href: "/learn/asthma" },
-      { title: "COPD" },
+      { title: "COPD", href: "/learn/copd" },
       { title: "Pleural Effusion" },
     ],
   },
@@ -40,7 +40,7 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
       { title: "Stroke", href: "/learn/stroke" },
       { title: "Epilepsy", href: "/learn/epilepsy" },
       { title: "Meningitis", href: "/learn/meningitis" },
-      { title: "Head Injury" },
+      { title: "Head Injury", href: "/learn/head-injury" },
     ],
   },
   {
@@ -66,7 +66,7 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
     conditions: [
       { title: "Typhoid Fever", href: "/learn/typhoid" },
       { title: "Peptic Ulcer Disease", href: "/learn/peptic-ulcer" },
-      { title: "Acute Diarrhoea & Dehydration" },
+      { title: "Acute Diarrhoea & Dehydration", href: "/learn/diarrhoea" },
       { title: "Liver Cirrhosis" },
       { title: "Appendicitis" },
     ],
