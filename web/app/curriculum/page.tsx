@@ -38,7 +38,7 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
     system: "Neurological",
     conditions: [
       { title: "Stroke", href: "/learn/stroke" },
-      { title: "Epilepsy" },
+      { title: "Epilepsy", href: "/learn/epilepsy" },
       { title: "Meningitis" },
       { title: "Head Injury" },
     ],
@@ -65,7 +65,7 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
     system: "Gastrointestinal",
     conditions: [
       { title: "Typhoid Fever", href: "/learn/typhoid" },
-      { title: "Peptic Ulcer Disease" },
+      { title: "Peptic Ulcer Disease", href: "/learn/peptic-ulcer" },
       { title: "Acute Diarrhoea & Dehydration" },
       { title: "Liver Cirrhosis" },
       { title: "Appendicitis" },
@@ -75,7 +75,7 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
     system: "Haematology",
     conditions: [
       { title: "Anaemia (incl. Sickle Cell)", href: "/learn/anaemia" },
-      { title: "Malaria (severe)" },
+      { title: "Severe Malaria", href: "/learn/malaria" },
       { title: "Bleeding Disorders" },
     ],
   },

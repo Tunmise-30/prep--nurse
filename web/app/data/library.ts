@@ -67,6 +67,27 @@ export const LESSONS: LessonEntry[] = [
     keywords: "pale tired iron sickle crisis pain folic acid transfusion",
   },
   {
+    title: "Severe Malaria",
+    href: "/learn/malaria",
+    course: "Medical-Surgical Nursing",
+    system: "Haematology",
+    keywords: "fever fit mosquito artesunate ACT nets anaemia plasmodium",
+  },
+  {
+    title: "Peptic Ulcer Disease",
+    href: "/learn/peptic-ulcer",
+    course: "Medical-Surgical Nursing",
+    system: "Gastrointestinal",
+    keywords: "hunger pain night NSAID black stool omeprazole bleeding",
+  },
+  {
+    title: "Epilepsy",
+    href: "/learn/epilepsy",
+    course: "Medical-Surgical Nursing",
+    system: "Neurological",
+    keywords: "seizure fit status side position rescue drug adherence",
+  },
+  {
     title: "Hand Hygiene",
     href: "/learn/hand-hygiene",
     course: "Fundamentals of Nursing",

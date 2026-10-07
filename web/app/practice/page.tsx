@@ -156,9 +156,27 @@ export default function PracticePage() {
             href="/scenarios/heart-failure"
             className="rounded-2xl border p-4"
           >
-            <strong>Clinical Scenario — Heart Failure</strong>
+            <strong>Scenario — Breathless in Heart Failure</strong>
             <p className="text-sm opacity-70">
               Step inside a patient case, decide, get feedback.
+            </p>
+          </Link>
+          <Link
+            href="/scenarios/hypoglycemia"
+            className="rounded-2xl border p-4"
+          >
+            <strong>Scenario — Low Sugar Crash</strong>
+            <p className="text-sm opacity-70">
+              Shaking, sweating, confused: act in the right order.
+            </p>
+          </Link>
+          <Link
+            href="/scenarios/stroke"
+            className="rounded-2xl border p-4"
+          >
+            <strong>Scenario — Sudden Slurred Speech</strong>
+            <p className="text-sm opacity-70">
+              FAST-positive in under an hour: what first?
             </p>
           </Link>
         </div>
