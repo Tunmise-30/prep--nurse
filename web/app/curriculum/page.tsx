@@ -16,12 +16,12 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
     conditions: [
       { title: "Hypertension", href: "/learn/hypertension" },
       { title: "Heart Failure", href: "/learn/heart-failure" },
-      { title: "Myocardial Infarction" },
+      { title: "Myocardial Infarction", href: "/learn/myocardial-infarction" },
       { title: "Angina Pectoris" },
       { title: "Rheumatic Heart Disease" },
       { title: "Infective Endocarditis" },
       { title: "Deep Vein Thrombosis" },
-      { title: "Shock (all types)" },
+      { title: "Shock (all types)", href: "/learn/shock" },
     ],
   },
   {
@@ -47,8 +47,8 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
     system: "Endocrine & Metabolic",
     conditions: [
       { title: "Diabetes Mellitus", href: "/learn/diabetes" },
-      { title: "Hypoglycaemia" },
-      { title: "Diabetic Ketoacidosis" },
+      { title: "Hypoglycaemia", href: "/learn/hypoglycaemia" },
+      { title: "Diabetic Ketoacidosis", href: "/learn/dka" },
       { title: "Thyroid Disorders" },
     ],
   },
@@ -56,7 +56,7 @@ const MEDSURG_SYSTEMS: SystemMap[] = [
     system: "Renal & Urinary",
     conditions: [
       { title: "Urinary Tract Infection", href: "/learn/uti" },
-      { title: "Acute Kidney Injury" },
+      { title: "Acute Kidney Injury", href: "/learn/aki" },
       { title: "Chronic Kidney Disease" },
       { title: "Kidney Stones" },
     ],

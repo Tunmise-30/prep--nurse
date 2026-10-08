@@ -130,6 +130,46 @@ export const LESSONS: LessonEntry[] = [
     keywords: "smoker spirometry inhaler flare pursed lip emphysema bronchitis",
   },
   {
+    title: "Myocardial Infarction",
+    href: "/learn/myocardial-infarction",
+    course: "Medical-Surgical Nursing",
+    system: "Cardiovascular",
+    keywords:
+      "heart attack chest pain aspirin STEMI troponin PCI sweating jaw arm",
+  },
+  {
+    title: "Shock (all types)",
+    href: "/learn/shock",
+    course: "Medical-Surgical Nursing",
+    system: "Cardiovascular",
+    keywords:
+      "shock low BP fast weak pulse pale clammy fluids sepsis dehydration anaphylaxis",
+  },
+  {
+    title: "Hypoglycaemia (Low Blood Sugar)",
+    href: "/learn/hypoglycaemia",
+    course: "Medical-Surgical Nursing",
+    system: "Endocrine",
+    keywords:
+      "low sugar sweating shaking confusion glucose glucagon 15-15 rule insulin",
+  },
+  {
+    title: "Diabetic Ketoacidosis (DKA)",
+    href: "/learn/dka",
+    course: "Medical-Surgical Nursing",
+    system: "Endocrine",
+    keywords:
+      "DKA high sugar ketones Kussmaul vomiting fruity breath insulin drip potassium",
+  },
+  {
+    title: "Acute Kidney Injury",
+    href: "/learn/aki",
+    course: "Medical-Surgical Nursing",
+    system: "Renal & Urinary",
+    keywords:
+      "AKI low urine creatinine potassium NSAID dehydration dialysis output",
+  },
+  {
     title: "Hand Hygiene",
     href: "/learn/hand-hygiene",
     course: "Fundamentals of Nursing",
