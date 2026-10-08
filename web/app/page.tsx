@@ -1,4 +1,5 @@
 import Link from "next/link";
+import InstallButton from "./lib/InstallButton";
 
 const PILLARS = [
   {
@@ -67,6 +68,17 @@ export default function Landing() {
       </div>
 
       <div className="mt-6 rounded-2xl border p-4">
+        <strong>Install Prep Nurse on your phone</strong>
+        <p className="mt-1 text-sm opacity-80">
+          Add it to your home screen and it opens like a real app — full
+          screen, works offline, and launches from a home-screen icon.
+        </p>
+        <div className="mt-3">
+          <InstallButton />
+        </div>
+      </div>
+
+      <div className="mt-4 rounded-2xl border p-4">
         <strong>Your choice, every time</strong>
         <p className="mt-1 text-sm opacity-80">
           Each topic offers two doors: <strong>learn the topic first</strong>{" "}

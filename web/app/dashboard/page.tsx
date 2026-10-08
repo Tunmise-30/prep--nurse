@@ -5,6 +5,7 @@ import { LESSONS } from "../data/library";
 import { QUESTIONS } from "../data/questions";
 import { useLocalJSON } from "../lib/local-store";
 import { useToday } from "../lib/today";
+import InstallButton from "../lib/InstallButton";
 
 interface TopicStat {
   tried: number;
@@ -315,6 +316,17 @@ export default function Dashboard() {
             Paystack test mode. No real money moves.
           </p>
         </Link>
+      </div>
+
+      <div className="mt-4 rounded-2xl border p-4">
+        <strong>Install Prep Nurse</strong>
+        <p className="mt-1 text-sm opacity-80">
+          Add it to your home screen — works offline and opens like a
+          real app.
+        </p>
+        <div className="mt-2">
+          <InstallButton />
+        </div>
       </div>
 
       <p className="mt-4 text-xs opacity-60">
