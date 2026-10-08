@@ -79,9 +79,31 @@ Interactive simulations, AI tutor / personalised quizzes, voice learning, advanc
 Healthcare education content must be accurate, evidence-informed, nursing-focused, level-appropriate, clearly written, regularly reviewed, referenced where necessary, and consistent with applicable standards. Clear distinction between educational information and individual patient medical advice.
 
 ## Project Status
-- Current phase: PRD (see `Untitled document (2).md`) — no implementation yet
-- MVP scope defined in PRD Section 31
-- Technical stack and **no Vercel** decision: attached note at the end of the PRD, and `IMPLEMENTATION_PLAN.md` §0 (**Next.js**, **PostgreSQL**, **Better Auth**, **MinIO** — local first)
+
+Working local-first prototype — see `web/`.
+
+**Implemented (all routes build + lint clean):**
+- **Learn**: hub by body system + 19 full lessons (diseases, nursing skills, pharmacology) with drug regimens, patient cases, bookmarks and per-lesson notes
+- **Practice**: 7 modes — Quick, Topic, Subject, Weak-Area (auto from <70% topics + repeat misses), Mixed, Clinical (58 tagged patient cases), Timed — 5/10/20 questions per session, 80 questions with full explanations
+- **Scenarios**: 5 interactive progressive-disclosure cases (heart failure, hypoglycemia, stroke, asthma, diarrhoea)
+- **Exam Prep**: mock, subject, and comprehensive tests with timed runner and full review
+- **Progress**: per-topic accuracy, weak-area flags (<70%), daily goals
+- **Onboarding**: full wizard — program (ND/HND) → level → current subjects → difficult areas → goals → knowledge preference (Nigerian/International/Both, default Both), saved to localStorage
+- **Diagnostic assessment**: 20 mixed questions across all subjects → "Strong in X, revise Y" with per-subject scores, weak topics, and recommended next steps
+- **Supporting**: Search, Flashcards, Saved lessons + notes, live Dashboard (real-time goal progress, weak areas, recommendations)
+- **Study plans**: exam date + subjects + sessions/week + focus areas → day-by-day schedule that weights weak topics first, with tick-off tracking
+- **Premium**: Paystack **test-mode** flow (init/verify API + success page) — no real money moves
+
+Progress/profile/bookmarks are stored in the browser (localStorage) on this prototype — there is no server database yet.
+
+**Stack note:** the originally planned local stack (**Next.js** + **PostgreSQL** + **Better Auth** + **MinIO**, no Vercel) remains the intended direction for real accounts and server-side data; the prototype currently runs on static data modules (`web/app/data/`) so it deploys anywhere Next.js runs (Netlify config included). See `IMPLEMENTATION_PLAN.md`.
 
 ## Getting Started
-Documentation only at this stage. Implementation to follow. Dev target is `localhost` (Next.js + Docker Postgres + Docker MinIO).
+
+```bash
+cd web
+npm install
+npm run dev        # http://localhost:3000
+```
+
+Premium flow needs Paystack **test** keys: copy `web/.env.example` to `web/.env.local` and paste your free test keys from dashboard.paystack.com (Settings → API Keys → Test).

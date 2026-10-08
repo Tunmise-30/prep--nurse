@@ -3,6 +3,8 @@
 Derived from full PRD (`Untitled document (2).md`, 35 sections). Local-first stack and the decision **not to use Vercel** are in the attached note after Section 35.
 Repo: https://github.com/Tunmise-30/prep--nurse.git
 
+> **Status (Oct 2026):** the prototype in `web/` runs on static TypeScript data modules (`web/app/data/`) + browser `localStorage`, deployed via Netlify — no server database yet. This keeps the whole app local-first and instantly runnable. §0's named stack (PostgreSQL, Better Auth, MinIO) is still the intended direction for real accounts, server-side progress history, and file storage; the data model below anticipates it. Phases 0–3 are largely built (see README "Project Status"); remaining work is listed under "Immediate Next Tasks".
+
 Core promise (Sec 30): **Learn → Apply → Practise → Improve**
 > "I don't understand diabetes" → "I understand it" → "I can recognise it in a patient" → "I know nursing priorities" → "I can answer exam questions."
 
@@ -203,7 +205,14 @@ W1-2: Phase 0 → W3-6: Phase 1 (one subject deep) → W7-9: Phase 2 → W10-12:
 
 ## Immediate Next Tasks
 - [x] Lock stack + repo structure (Next.js, Postgres, Better Auth, MinIO — local)
-- [ ] Finalise ND/HND curriculum map spreadsheet
-- [ ] Write 3 exemplar lessons (Hypertension, Heart Failure, Loop Diuretics)
-- [ ] Write 50 exemplar Qs with full explanations
-- [ ] Implement onboarding + lesson viewer + quiz player skeleton
+- [x] Exemplar lessons (19 shipped: Hypertension, Heart Failure, Diabetes, Stroke, Pneumonia, TB, Typhoid, Anaemia, Malaria, Ulcer, Epilepsy, Meningitis, Asthma, UTI, Diarrhoea, Head Injury, COPD + Hand Hygiene, BP, Loop Diuretics)
+- [x] Question bank skeleton (80 questions, 58 clinical-tagged, full explanations)
+- [x] Onboarding + Learn hub + quiz player (7 modes) + scenario player + exam runner
+- [x] Study plans (Phase 4.6) — exam date → day-by-day schedule, weak-weighted (`/plans`)
+- [x] Adaptive revision digest (Phase 4.2) on `/progress` — per-subject status + next actions
+- [ ] Grow question bank toward 300–500 vetted questions (Phase 2 target)
+- [x] Diagnostic assessment (Phase 0.2) — 20 mixed questions → "Strong in X, revise Y" (`/diagnostic`)
+- [x] Full onboarding wizard: ND/HND → level → subjects → weak areas → goals (`/onboarding`)
+- [ ] Adaptive revision recommendations + study plans (Phase 4.2, 4.6)
+- [ ] Notifications/reminders (Phase 4.7)
+- [ ] Server accounts + progress history: PostgreSQL/Prisma + Better Auth (§0 stack)

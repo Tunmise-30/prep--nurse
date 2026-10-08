@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { getExam, examQuestions } from "../../data/exams";
 import type { Question } from "../../data/questions";
+import { bumpToday } from "../../lib/today";
 
 function isCorrect(q: Question, picked: number[]): boolean {
   if (q.format === "multi") {
@@ -22,19 +23,19 @@ export default function ExamRunner() {
   const questions = useMemo(() => examQuestions(params.id), [params.id]);
 
   const [answers, setAnswers] = useState<Record<string, number[]>>({});
-  const [submitted, setSubmitted] = useState(false);
+  const [userSubmitted, setUserSubmitted] = useState(false);
+  const [usedSeconds, setUsedSeconds] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState((exam?.minutes ?? 10) * 60);
   const [startedAt] = useState(() => Date.now());
 
+  const expired = !!exam && secondsLeft <= 0;
+  const submitted = userSubmitted || expired;
+
   useEffect(() => {
-    if (submitted || !exam) return;
-    if (secondsLeft <= 0) {
-      setSubmitted(true);
-      return;
-    }
+    if (userSubmitted || !exam || expired) return;
     const t = setTimeout(() => setSecondsLeft((s) => s - 1), 1000);
     return () => clearTimeout(t);
-  }, [submitted, exam, secondsLeft]);
+  }, [userSubmitted, exam, expired, secondsLeft]);
 
   if (!exam) {
     return (
@@ -62,6 +63,14 @@ export default function ExamRunner() {
       }
       return { ...a, [qid]: [i] };
     });
+  }
+
+  function submitExam() {
+    setUsedSeconds(Math.round((Date.now() - startedAt) / 1000));
+    setUserSubmitted(true);
+    bumpToday(
+      Object.values(answers).filter((a) => a.length > 0).length
+    );
   }
 
   if (!submitted) {
@@ -110,7 +119,7 @@ export default function ExamRunner() {
           ))}
         </div>
         <button
-          onClick={() => setSubmitted(true)}
+          onClick={submitExam}
           className="mt-4 rounded-xl px-5 py-2 text-white"
           style={{ background: "var(--pn-coral)" }}
         >
@@ -128,7 +137,9 @@ export default function ExamRunner() {
   const score = results.filter((r) => r.ok).length;
   const missed = results.filter((r) => !r.ok);
   const missedTopics = [...new Set(missed.map((r) => r.q.topic))];
-  const timeUsed = Math.round((Date.now() - startedAt) / 1000);
+  const timeUsed = userSubmitted
+    ? usedSeconds
+    : (exam.minutes ?? 10) * 60;
   const usedMins = Math.floor(timeUsed / 60);
   const usedSecs = String(timeUsed % 60).padStart(2, "0");
 

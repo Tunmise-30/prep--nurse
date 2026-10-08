@@ -9,10 +9,6 @@ export interface ExamConfig {
   description: string;
 }
 
-function idsByTopic(topic: string): string[] {
-  return QUESTIONS.filter((q) => q.topic === topic).map((q) => q.id);
-}
-
 function idsBySubject(subject: string): string[] {
   return QUESTIONS.filter((q) => q.subject === subject).map((q) => q.id);
 }

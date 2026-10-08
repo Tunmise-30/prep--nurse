@@ -1,28 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { LESSONS } from "../data/library";
+import { useLocalJSON } from "../lib/local-store";
+
+const NO_SAVED: string[] = [];
+const NO_NOTES: Record<string, string> = {};
 
 export default function SavedPage() {
-  const [saved, setSaved] = useState<string[]>([]);
-  const [notes, setNotes] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    try {
-      const b: string[] = JSON.parse(
-        localStorage.getItem("pn-bookmarks") || "[]"
-      );
-      setSaved(b);
-      const n: Record<string, string> = {};
-      b.forEach((title) => {
-        n[title] = localStorage.getItem(`pn-note-${title}`) || "";
-      });
-      setNotes(n);
-    } catch {
-      /* ignore */
-    }
-  }, []);
+  const saved = useLocalJSON<string[]>("pn-bookmarks", NO_SAVED);
+  const notes = useLocalJSON<Record<string, string>>(
+    "pn-notes",
+    NO_NOTES
+  );
 
   const lessons = LESSONS.filter((l) => saved.includes(l.title));
 
@@ -39,7 +29,8 @@ export default function SavedPage() {
       {!lessons.length ? (
         <div className="mt-4 rounded-2xl border p-4">
           <p className="text-sm opacity-70">
-            Nothing saved yet. Open any lesson and tap “☆ Save this lesson”.
+            Nothing saved yet. Open any lesson and tap “☆ Save this
+            lesson”.
           </p>
           <Link href="/learn" className="mt-2 inline-block underline">
             Go to Learn

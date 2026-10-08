@@ -2,9 +2,72 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { QUESTIONS, TOPICS, pickRandom, type Question } from "../data/questions";
+import {
+  QUESTIONS,
+  TOPICS,
+  pickRandom,
+  type Question,
+} from "../data/questions";
+import { useLocalJSON, writeLocalJSON } from "../lib/local-store";
+import { bumpToday } from "../lib/today";
 
-type Mode = "quick" | "topic" | "timed";
+type Mode =
+  | "quick"
+  | "topic"
+  | "subject"
+  | "weak"
+  | "mixed"
+  | "clinical"
+  | "timed";
+type Count = 5 | 10 | 20;
+
+interface TopicStat {
+  tried: number;
+  ok: number;
+}
+
+const NO_STATS: Record<string, TopicStat> = {};
+
+const MODES: { id: Mode; title: string; blurb: string }[] = [
+  {
+    id: "quick",
+    title: "Quick Practice",
+    blurb: "Random questions from the whole bank.",
+  },
+  {
+    id: "topic",
+    title: "Topic Practice",
+    blurb: "One topic at a time — pick it below.",
+  },
+  {
+    id: "subject",
+    title: "Subject Practice",
+    blurb: "One subject at a time — pick it below.",
+  },
+  {
+    id: "weak",
+    title: "Weak-Area Practice",
+    blurb: "Auto-built from topics under 70% + repeated misses.",
+  },
+  {
+    id: "mixed",
+    title: "Mixed Practice",
+    blurb: "One question per topic — a balanced mix.",
+  },
+  {
+    id: "clinical",
+    title: "Clinical Practice",
+    blurb: "Patient cases: assess, decide, act.",
+  },
+  {
+    id: "timed",
+    title: "Timed Practice",
+    blurb: "Exam conditions: one minute per question.",
+  },
+];
+
+const SUBJECTS = [...new Set(QUESTIONS.map((q) => q.subject))];
+const COUNTS: Count[] = [5, 10, 20];
 
 function isCorrect(q: Question, picked: number[]): boolean {
   if (q.format === "multi") {
@@ -16,9 +79,45 @@ function isCorrect(q: Question, picked: number[]): boolean {
   return picked.length === 1 && q.answer.includes(picked[0]);
 }
 
+function buildMixed(n: number): Question[] {
+  const byTopic = new Map<string, Question[]>();
+  for (const q of QUESTIONS) {
+    const arr = byTopic.get(q.topic) || [];
+    arr.push(q);
+    byTopic.set(q.topic, arr);
+  }
+  const topics = pickRandom([...byTopic.keys()], byTopic.size);
+  const result: Question[] = [];
+  outer: for (let round = 0; round < 5; round++) {
+    for (const t of topics) {
+      const pool = byTopic.get(t) ?? [];
+      if (round < pool.length) {
+        result.push(pool[round]);
+        if (result.length >= n) break outer;
+      }
+    }
+  }
+  return result;
+}
+
+function detectWeak(
+  stats: Record<string, TopicStat>
+): string[] {
+  return TOPICS.filter((t) => {
+    const s = stats[t];
+    return !!s && s.tried > 0 && s.ok / s.tried < 0.7;
+  });
+}
+
 export default function PracticePage() {
+  const stats = useLocalJSON<Record<string, TopicStat>>(
+    "pn-practice",
+    NO_STATS
+  );
   const [mode, setMode] = useState<Mode | null>(null);
+  const [count, setCount] = useState<Count>(5);
   const [topic, setTopic] = useState<string>(TOPICS[0]);
+  const [subject, setSubject] = useState<string>(SUBJECTS[0]);
   const [quiz, setQuiz] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
   const [picked, setPicked] = useState<number[]>([]);
@@ -27,32 +126,51 @@ export default function PracticePage() {
   const [missedTopics, setMissedTopics] = useState<string[]>([]);
   const [secondsLeft, setSecondsLeft] = useState(300);
   const [finished, setFinished] = useState(false);
+  const [weakFallback, setWeakFallback] = useState(false);
 
   const q = quiz[index];
+  const expired = mode === "timed" && quiz.length > 0 && secondsLeft <= 0;
+  const done = finished || expired;
 
   useEffect(() => {
-    if (mode !== "timed" || !quiz.length || finished) return;
-    if (secondsLeft <= 0) {
-      setFinished(true);
-      return;
-    }
+    if (mode !== "timed" || !quiz.length || done) return;
     const t = setTimeout(() => setSecondsLeft((s) => s - 1), 1000);
     return () => clearTimeout(t);
-  }, [mode, quiz, finished, secondsLeft]);
+  }, [mode, quiz, done, secondsLeft]);
+
+  const detectedWeak = useMemo(() => detectWeak(stats), [stats]);
 
   function start(m: Mode) {
     let pool = QUESTIONS;
+    let fallback = false;
     if (m === "topic") pool = QUESTIONS.filter((x) => x.topic === topic);
+    if (m === "subject")
+      pool = QUESTIONS.filter((x) => x.subject === subject);
+    if (m === "clinical") pool = QUESTIONS.filter((x) => x.clinical);
+    if (m === "mixed") pool = buildMixed(count);
+    if (m === "weak") {
+      const weak = [...new Set([...detectedWeak, ...missedTopics])];
+      const wp = QUESTIONS.filter((x) => weak.includes(x.topic));
+      if (wp.length) {
+        pool = wp;
+      } else {
+        pool = QUESTIONS;
+        fallback = true;
+      }
+    }
     if (!pool.length) pool = QUESTIONS;
-    const n = m === "quick" ? 5 : m === "timed" ? 5 : 5;
-    setQuiz(pickRandom(pool, Math.min(n, pool.length)));
+    const picked2 =
+      m === "mixed"
+        ? pool.slice(0, Math.min(count, pool.length))
+        : pickRandom(pool, Math.min(count, pool.length));
+    setQuiz(picked2);
     setMode(m);
+    setWeakFallback(fallback);
     setIndex(0);
     setPicked([]);
     setLocked(false);
     setScore(0);
-    setMissedTopics([]);
-    setSecondsLeft(300);
+    setSecondsLeft(count * 60);
     setFinished(false);
   }
 
@@ -74,16 +192,14 @@ export default function PracticePage() {
     } else {
       setMissedTopics((t) => [...t, q.topic]);
     }
-    try {
-      const raw = localStorage.getItem("pn-practice") || "{}";
-      const store = JSON.parse(raw);
-      store[q.topic] = store[q.topic] || { tried: 0, ok: 0 };
-      store[q.topic].tried += 1;
-      if (ok) store[q.topic].ok += 1;
-      localStorage.setItem("pn-practice", JSON.stringify(store));
-    } catch {
-      /* private mode — ignore */
-    }
+    writeLocalJSON("pn-practice", {
+      ...stats,
+      [q.topic]: {
+        tried: (stats[q.topic]?.tried ?? 0) + 1,
+        ok: (stats[q.topic]?.ok ?? 0) + (ok ? 1 : 0),
+      },
+    });
+    bumpToday(1);
   }
 
   function next() {
@@ -108,19 +224,45 @@ export default function PracticePage() {
         </Link>
         <h1 className="mt-2 font-serif text-3xl">Practice</h1>
         <p className="opacity-70">
-          Pick how to practise. Every answer shows full explanation — never
-          just “correct” or “wrong”.
+          Pick how to practise. Every answer shows full explanation —
+          never just “correct” or “wrong”.
         </p>
+
+        <div className="mt-4 rounded-2xl border p-4">
+          <strong>Questions per session</strong>
+          <div className="mt-2 flex gap-2">
+            {COUNTS.map((c) => (
+              <button
+                key={c}
+                onClick={() => setCount(c)}
+                className="rounded-full border px-4 py-1 text-sm"
+                style={
+                  count === c
+                    ? { background: "var(--pn-lagoon)", color: "#fff" }
+                    : undefined
+                }
+              >
+                {c}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-4 grid gap-3">
-          <button
-            onClick={() => start("quick")}
-            className="rounded-2xl border p-4 text-left"
-          >
-            <strong>Quick Practice — 5 questions</strong>
-            <p className="text-sm opacity-70">Mixed topics, short session.</p>
-          </button>
           <div className="rounded-2xl border p-4">
-            <strong>Topic Practice — 5 questions</strong>
+            <strong>{MODES[0].title} — {count} questions</strong>
+            <p className="text-sm opacity-70">{MODES[0].blurb}</p>
+            <button
+              onClick={() => start("quick")}
+              className="mt-2 rounded-xl px-4 py-2 text-sm text-white"
+              style={{ background: "var(--pn-lagoon)" }}
+            >
+              Start
+            </button>
+          </div>
+
+          <div className="rounded-2xl border p-4">
+            <strong>{MODES[1].title} — {count} questions</strong>
             <div className="mt-2 flex flex-wrap gap-2">
               {TOPICS.map((t) => (
                 <button
@@ -139,19 +281,100 @@ export default function PracticePage() {
             </div>
             <button
               onClick={() => start("topic")}
-              className="mt-3 rounded-xl px-4 py-2 text-white"
+              className="mt-3 rounded-xl px-4 py-2 text-sm text-white"
               style={{ background: "var(--pn-lagoon)" }}
             >
               Start {topic}
             </button>
           </div>
-          <button
-            onClick={() => start("timed")}
-            className="rounded-2xl border p-4 text-left"
-          >
-            <strong>Timed Practice — 5 questions, 5 minutes</strong>
-            <p className="text-sm opacity-70">Exam conditions with a clock.</p>
-          </button>
+
+          <div className="rounded-2xl border p-4">
+            <strong>{MODES[2].title} — {count} questions</strong>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {SUBJECTS.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setSubject(s)}
+                  className="rounded-full border px-3 py-1 text-sm"
+                  style={
+                    subject === s
+                      ? { background: "var(--pn-lagoon)", color: "#fff" }
+                      : undefined
+                  }
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={() => start("subject")}
+              className="mt-3 rounded-xl px-4 py-2 text-sm text-white"
+              style={{ background: "var(--pn-lagoon)" }}
+            >
+              Start {subject}
+            </button>
+          </div>
+
+          <div className="rounded-2xl border p-4">
+            <strong>{MODES[3].title} — up to {count} questions</strong>
+            <p className="text-sm opacity-70">{MODES[3].blurb}</p>
+            <p className="mt-1 text-sm">
+              {detectedWeak.length ? (
+                <span>
+                  Weak now: <em>{detectedWeak.join(", ")}</em>
+                </span>
+              ) : (
+                <span className="opacity-70">
+                  Nothing recorded under 70% yet — attempt questions and
+                  this mode targets what you miss.
+                </span>
+              )}
+            </p>
+            <button
+              onClick={() => start("weak")}
+              className="mt-2 rounded-xl px-4 py-2 text-sm text-white"
+              style={{ background: "var(--pn-lagoon)" }}
+            >
+              Start weak-area set
+            </button>
+          </div>
+
+          <div className="rounded-2xl border p-4">
+            <strong>{MODES[4].title} — {count} questions</strong>
+            <p className="text-sm opacity-70">{MODES[4].blurb}</p>
+            <button
+              onClick={() => start("mixed")}
+              className="mt-2 rounded-xl px-4 py-2 text-sm text-white"
+              style={{ background: "var(--pn-lagoon)" }}
+            >
+              Start
+            </button>
+          </div>
+
+          <div className="rounded-2xl border p-4">
+            <strong>{MODES[5].title} — {count} questions</strong>
+            <p className="text-sm opacity-70">{MODES[5].blurb}</p>
+            <button
+              onClick={() => start("clinical")}
+              className="mt-2 rounded-xl px-4 py-2 text-sm text-white"
+              style={{ background: "var(--pn-lagoon)" }}
+            >
+              Start
+            </button>
+          </div>
+
+          <div className="rounded-2xl border p-4">
+            <strong>{MODES[6].title} — {count} questions, {count} minutes</strong>
+            <p className="text-sm opacity-70">{MODES[6].blurb}</p>
+            <button
+              onClick={() => start("timed")}
+              className="mt-2 rounded-xl px-4 py-2 text-sm text-white"
+              style={{ background: "var(--pn-lagoon)" }}
+            >
+              Start
+            </button>
+          </div>
+
           <Link
             href="/scenarios/heart-failure"
             className="rounded-2xl border p-4"
@@ -199,14 +422,15 @@ export default function PracticePage() {
           </Link>
         </div>
         <p className="mt-3 text-xs opacity-60">
-          Bank: {QUESTIONS.length} questions · Weak-area, mixed, and exam modes
-          grow in the next batch.
+          Bank: {QUESTIONS.length} questions ·{" "}
+          {QUESTIONS.filter((x) => x.clinical).length} clinical cases ·
+          progress feeds the weak-area mode.
         </p>
       </div>
     );
   }
 
-  if (finished) {
+  if (done) {
     return (
       <div className="mx-auto w-full max-w-2xl px-4 py-6">
         <Link href="/dashboard" className="text-sm underline">
@@ -218,6 +442,17 @@ export default function PracticePage() {
             Score: {score} of {quiz.length} (
             {Math.round((score / quiz.length) * 100)}%)
           </p>
+          {expired && !finished && (
+            <p className="mt-1 text-sm opacity-70">
+              Time ran out — the clock stopped here.
+            </p>
+          )}
+          {weakFallback && (
+            <p className="mt-1 text-sm opacity-70">
+              No weak areas recorded yet, so this was a mixed set to
+              build your profile.
+            </p>
+          )}
           {weakList.length ? (
             <p className="mt-2">
               Revise: {weakList.join(", ")}.{" "}
@@ -324,8 +559,8 @@ export default function PracticePage() {
           <strong>{ok ? "Correct." : "Not quite — here is why."}</strong>
           <p>{q.explanation}</p>
           <p className="text-sm opacity-70">
-            Why others are wrong: {q.whyOthersWrong} Principle: {q.principle}{" "}
-            Review:{" "}
+            Why others are wrong: {q.whyOthersWrong} Principle:{" "}
+            {q.principle} Review:{" "}
             <Link href={q.reviewHref} className="underline">
               {q.reviewLabel}
             </Link>

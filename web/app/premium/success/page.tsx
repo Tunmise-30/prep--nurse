@@ -10,10 +10,7 @@ function SuccessInner() {
   const [state, setState] = useState("Checking test payment…");
 
   useEffect(() => {
-    if (!reference) {
-      setState("No payment reference found.");
-      return;
-    }
+    if (!reference) return;
     fetch(`/api/pay/verify?reference=${reference}`)
       .then((r) => r.json())
       .then((d) => {
@@ -38,8 +35,14 @@ function SuccessInner() {
       </Link>
       <h1 className="mt-2 font-serif text-3xl">Payment result</h1>
       <div className="mt-4 rounded-2xl border p-4">
-        <p>{state}</p>
-        <p className="mt-1 text-xs opacity-60">Reference: {reference || "—"}</p>
+        {!reference ? (
+          <p>No payment reference found.</p>
+        ) : (
+          <p>{state}</p>
+        )}
+        <p className="mt-1 text-xs opacity-60">
+          Reference: {reference || "—"}
+        </p>
       </div>
       <Link href="/exams" className="mt-3 inline-block underline">
         Go to Exam Prep →

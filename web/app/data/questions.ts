@@ -5,6 +5,8 @@ export interface Question {
   subject: string;
   topic: string;
   format: QFormat;
+  /** true when the stem presents a patient case to reason through */
+  clinical?: boolean;
   stem: string;
   options: string[];
   /** index(es) of correct option(s) */
@@ -42,6 +44,7 @@ export const TOPICS = [
 export const QUESTIONS: Question[] = [
   {
     id: "htn-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Hypertension",
     format: "mcq",
@@ -63,6 +66,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "htn-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Hypertension",
     format: "mcq",
@@ -99,6 +103,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "hf-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Heart Failure",
     format: "mcq",
@@ -120,6 +125,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "hf-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Heart Failure",
     format: "mcq",
@@ -161,6 +167,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "dm-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Diabetes",
     format: "mcq",
@@ -181,6 +188,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "dm-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Diabetes",
     format: "mcq",
@@ -309,6 +317,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "loop-2",
+    clinical: true,
     subject: "Pharmacology",
     topic: "Loop Diuretics",
     format: "mcq",
@@ -348,6 +357,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "prio-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Hypertension",
     format: "mcq",
@@ -368,6 +378,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "prio-2",
+    clinical: true,
     subject: "Fundamentals of Nursing",
     topic: "Blood Pressure",
     format: "mcq",
@@ -422,6 +433,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "stroke-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Stroke",
     format: "mcq",
@@ -443,6 +455,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "stroke-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Stroke",
     format: "mcq",
@@ -463,6 +476,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "pneu-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Pneumonia",
     format: "mcq",
@@ -483,6 +497,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "pneu-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Pneumonia",
     format: "mcq",
@@ -503,6 +518,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "tb-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Tuberculosis",
     format: "mcq",
@@ -524,6 +540,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "tb-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Tuberculosis",
     format: "mcq",
@@ -545,6 +562,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "typh-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Typhoid",
     format: "mcq",
@@ -566,6 +584,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "typh-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Typhoid",
     format: "mcq",
@@ -586,6 +605,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "ana-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Anaemia",
     format: "mcq",
@@ -607,6 +627,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "ana-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Anaemia",
     format: "mcq",
@@ -627,6 +648,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "mal-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Malaria",
     format: "mcq",
@@ -647,6 +669,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "mal-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Malaria",
     format: "mcq",
@@ -667,6 +690,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "ulcer-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Ulcer",
     format: "mcq",
@@ -707,6 +731,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "epi-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Epilepsy",
     format: "mcq",
@@ -727,6 +752,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "epi-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Epilepsy",
     format: "mcq",
@@ -847,6 +873,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "hf-4",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Heart Failure",
     format: "mcq",
@@ -867,6 +894,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "uti-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "UTI",
     format: "mcq",
@@ -887,6 +915,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "uti-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "UTI",
     format: "mcq",
@@ -907,6 +936,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "asth-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Asthma",
     format: "mcq",
@@ -927,6 +957,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "asth-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Asthma",
     format: "mcq",
@@ -947,6 +978,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "men-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Meningitis",
     format: "mcq",
@@ -967,6 +999,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "men-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Meningitis",
     format: "mcq",
@@ -987,6 +1020,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "dia-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Diarrhoea",
     format: "mcq",
@@ -1007,6 +1041,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "dia-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Diarrhoea",
     format: "mcq",
@@ -1027,6 +1062,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "hi-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Head Injury",
     format: "mcq",
@@ -1047,6 +1083,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "hi-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "Head Injury",
     format: "mcq",
@@ -1067,6 +1104,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "copd-1",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "COPD",
     format: "mcq",
@@ -1087,6 +1125,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: "copd-2",
+    clinical: true,
     subject: "Medical-Surgical Nursing",
     topic: "COPD",
     format: "mcq",
@@ -1104,6 +1143,573 @@ export const QUESTIONS: Question[] = [
     principle: "Green + fever + worse breath = flare.",
     reviewHref: "/learn/copd",
     reviewLabel: "COPD → Flare plan",
+  },
+  {
+    id: "men-3",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Meningitis",
+    format: "mcq",
+    stem: "A child with fever and stiff neck becomes hard to wake and the purple rash is spreading. What now?",
+    options: [
+      "Give water and watch for an hour",
+      "Urgent emergency help now — falling consciousness and spreading rash mean severe meningitis/sepsis",
+      "Wait for a lumbar puncture first",
+      "Send home with paracetamol",
+    ],
+    answer: [1],
+    explanation:
+      "Falling consciousness plus a spreading non-blanching rash is a medical emergency — call for urgent help, give oxygen, do not delay.",
+    whyOthersWrong:
+      "Watching, delaying for tests, or sending home risks death; paracetamol does not treat sepsis.",
+    principle: "Falling consciousness + spreading rash = emergency now.",
+    reviewHref: "/learn/meningitis",
+    reviewLabel: "Meningitis → Emergency signs",
+  },
+  {
+    id: "asth-3",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Asthma",
+    format: "mcq",
+    stem: "A child needs the blue reliever inhaler 3 times a week and wakes at night coughing twice a week. What does this suggest?",
+    options: [
+      "Perfectly controlled asthma",
+      "Asthma is not controlled — review preventer treatment with a clinician",
+      "Stop all inhalers",
+      "Only exercise causes it",
+    ],
+    answer: [1],
+    explanation:
+      "Reliever use more than twice a week or night waking means asthma is not controlled — a daily preventer review is needed.",
+    whyOthersWrong:
+      "Stopping inhalers is dangerous; frequent reliever use is a warning, not proof of control.",
+    principle: "Frequent reliever or night waking = uncontrolled asthma.",
+    reviewHref: "/learn/asthma",
+    reviewLabel: "Asthma → Control check",
+  },
+  {
+    id: "dia-3",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Diarrhoea",
+    format: "mcq",
+    stem: "After 4 hours of Plan A, a toddler still passes watery stools but drinks well with normal eyes and skin. What next?",
+    options: [
+      "Admit for IV fluids at once",
+      "Continue Plan A: more ORS after each loose stool, keep feeding, reassess",
+      "Stop all fluids for 4 hours",
+      "Give antibiotics",
+    ],
+    answer: [1],
+    explanation:
+      "Some dehydration, drinking well, no danger signs = keep Plan A going: ORS after each stool, continued feeding, recheck for danger signs.",
+    whyOthersWrong:
+      "IV fluids are for severe cases or failure to drink; fasting worsens diarrhoea; antibiotics are not routine.",
+    principle: "Drinks well + no danger signs = keep Plan A.",
+    reviewHref: "/learn/diarrhoea",
+    reviewLabel: "Diarrhoea → Plan A",
+  },
+  {
+    id: "copd-3",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "COPD",
+    format: "mcq",
+    stem: "A COPD patient still smokes half a pack a day. Which single step slows the disease most?",
+    options: [
+      "Extra inhalers",
+      "Stopping smoking — it slows lung decline more than any drug",
+      "Bed rest",
+      "Yearly antibiotics",
+    ],
+    answer: [1],
+    explanation:
+      "Stopping smoking is the only step that slows COPD decline; inhalers ease symptoms but smoke is the cause.",
+    whyOthersWrong:
+      "Inhalers, rest, and antibiotics do not stop the ongoing lung damage from smoke.",
+    principle: "No smoke, no more decline.",
+    reviewHref: "/learn/copd",
+    reviewLabel: "COPD → Stop smoking",
+  },
+  {
+    id: "hi-3",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Head Injury",
+    format: "mcq",
+    stem: "A head-injury patient is hard to wake and keeps vomiting. What does this warn?",
+    options: [
+      "Normal recovery — sleep more",
+      "Rising pressure inside the skull — urgent review and imaging now",
+      "Hunger — offer food",
+      "Just a mild concussion",
+    ],
+    answer: [1],
+    explanation:
+      "Falling consciousness plus repeated vomiting warns of rising pressure inside the skull — urgent escalation and imaging.",
+    whyOthersWrong:
+      "Sleeping it off or feeding risks missing a deadly bleed; concussion does not worsen consciousness.",
+    principle: "Hard to wake + vomiting = urgent scan.",
+    reviewHref: "/learn/head-injury",
+    reviewLabel: "Head Injury → Danger signs",
+  },
+  {
+    id: "mal-3",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Malaria",
+    format: "mcq",
+    stem: "In a malaria area, a child has fever and had a fit but is now alert. What is still essential?",
+    options: [
+      "Nothing — the fit passed",
+      "Test for malaria at once and treat by result; fever + fit can mean severe malaria",
+      "Only give more fluids",
+      "Wait for the next fit",
+    ],
+    answer: [1],
+    explanation:
+      "Fever with a fit in a malaria area must be tested and treated fast — it can be severe malaria even if the child now looks well.",
+    whyOthersWrong:
+      "Watching, fluids alone, or waiting for another fit can miss severe malaria.",
+    principle: "Fever + fit in malaria area = test now.",
+    reviewHref: "/learn/malaria",
+    reviewLabel: "Malaria → Severe signs",
+  },
+  {
+    id: "hh-3",
+    subject: "Fundamentals of Nursing",
+    topic: "Hand Hygiene",
+    format: "mcq",
+    stem: "When must soap-and-water be used instead of alcohol rub?",
+    options: [
+      "Always — alcohol rub is never enough",
+      "When hands are visibly dirty, or after caring for a patient with diarrhoea (germs like norovirus)",
+      "Only before meals",
+      "Only in the operating room",
+    ],
+    answer: [1],
+    explanation:
+      "Alcohol rub does not work well on visibly dirty hands or against some diarrhoea germs — soap-and-water is required.",
+    whyOthersWrong:
+      "Alcohol rub is fine for routine clean-hand moments; the other options are too narrow.",
+    principle: "Dirty hands or diarrhoea bugs = soap and water.",
+    reviewHref: "/learn/hand-hygiene",
+    reviewLabel: "Hand Hygiene → Soap vs rub",
+  },
+  {
+    id: "ulcer-3",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Ulcer",
+    format: "mcq",
+    stem: "A patient with ulcer pain takes ibuprofen daily for back pain. What teaching matters most?",
+    options: [
+      "Keep both drugs — they do not interact",
+      "NSAIDs like ibuprofen worsen ulcers — ask the clinician for a safer pain option",
+      "Take ibuprofen on an empty stomach",
+      "Double the omeprazole dose alone",
+    ],
+    answer: [1],
+    explanation:
+      "NSAIDs damage the stomach lining and keep ulcers painful — review pain relief with a clinician instead.",
+    whyOthersWrong:
+      "Empty-stomach NSAIDs hurt more; doubling omeprazole without review does not fix the cause.",
+    principle: "Ulcer + NSAID = stop the NSAID (with clinician).",
+    reviewHref: "/learn/peptic-ulcer",
+    reviewLabel: "Peptic Ulcer → NSAIDs",
+  },
+  {
+    id: "uti-3",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "UTI",
+    format: "mcq",
+    stem: "A catheterised patient develops cloudy urine, fever, and confusion. What first?",
+    options: [
+      "Ignore — catheters always cloud urine",
+      "Assess, send a urine culture, review whether the catheter is still needed, and give antibiotics per order",
+      "Pull the catheter out without review",
+      "Restrict fluids",
+    ],
+    answer: [1],
+    explanation:
+      "Fever plus cloudy urine plus confusion in a catheterised patient suggests a catheter-associated UTI — culture, review need, treat per order.",
+    whyOthersWrong:
+      "Ignoring risks sepsis; removing without review may be unsafe; restricting fluids concentrates bacteria.",
+    principle: "Catheter + fever = culture and treat.",
+    reviewHref: "/learn/uti",
+    reviewLabel: "UTI → Catheter care",
+  },
+  {
+    id: "epi-3",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Epilepsy",
+    format: "mcq",
+    stem: "A patient on epilepsy tablets often misses doses. What is the key teaching?",
+    options: [
+      "Missed doses are harmless",
+      "Take it every day at the same time — missed doses can trigger fits, and never stop suddenly",
+      "Stop the drug for a week each month",
+      "Only take it after a fit happens",
+    ],
+    answer: [1],
+    explanation:
+      "Anti-seizure drugs work only when taken daily; missed doses can cause breakthrough fits, and sudden stopping can cause status epilepticus.",
+    whyOthersWrong:
+      "Drug holidays and after-the-fact dosing do not prevent fits — they provoke them.",
+    principle: "Daily, same time, never stop suddenly.",
+    reviewHref: "/learn/epilepsy",
+    reviewLabel: "Epilepsy → Drug adherence",
+  },
+  {
+    id: "tb-4",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Tuberculosis",
+    format: "mcq",
+    stem: "A TB patient reports blurred vision and trouble telling red from green. What is the priority?",
+    options: [
+      "Reassure — drugs never affect the eyes",
+      "Report at once: possible ethambutol optic neuritis — the drug may need review",
+      "Stop all TB drugs immediately",
+      "Double the dose",
+    ],
+    answer: [1],
+    explanation:
+      "Colour-vision change on TB treatment warns of ethambutol optic neuritis — report urgently; the regimen may be adjusted.",
+    whyOthersWrong:
+      "Ignoring it can cost sight; stopping all drugs breeds resistance; doubling is dangerous.",
+    principle: "Colour-vision change on TB drugs = report now.",
+    reviewHref: "/learn/tuberculosis",
+    reviewLabel: "TB → Drug safety",
+  },
+  {
+    id: "ana-4",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Anaemia",
+    format: "mcq",
+    stem: "A patient with severe anaemia (Hb 6 g/dL) is breathless at rest and needs blood. What comes first?",
+    options: [
+      "Transfuse as fast as possible",
+      "Confirm identity, blood group match, consent, and vital signs before starting",
+      "Give iron tablets instead",
+      "Wait for haemoglobin to fall further",
+    ],
+    answer: [1],
+    explanation:
+      "Safe transfusion starts with checking identity, crossmatch, consent, and baseline vitals — then transfuse slowly at first.",
+    whyOthersWrong:
+      "Fast transfusion risks fluid overload; iron does not fix acute severe anaemia; waiting endangers the patient.",
+    principle: "Right patient, right blood, right check.",
+    reviewHref: "/learn/anaemia",
+    reviewLabel: "Anaemia → Transfusion safety",
+  },
+  {
+    id: "typh-4",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Typhoid",
+    format: "mcq",
+    stem: "A typhoid patient's fever has settled, but stools still test positive. What teaching matters most?",
+    options: [
+      "No hygiene needed once fever is gone",
+      "Finish all antibiotics, keep handwashing strict, and return for the follow-up culture",
+      "Stop antibiotics — fever is gone",
+      "Share towels to build family immunity",
+    ],
+    answer: [1],
+    explanation:
+      "Positive stools after fever means the patient can still spread typhoid — complete antibiotics, strict handwashing, follow-up culture.",
+    whyOthersWrong:
+      "Stopping early invites relapse and resistance; poor hygiene spreads it to family.",
+    principle: "Fever gone ≠ infection gone.",
+    reviewHref: "/learn/typhoid",
+    reviewLabel: "Typhoid → Recovery teaching",
+  },
+  {
+    id: "pneu-4",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Pneumonia",
+    format: "mcq",
+    stem: "A pneumonia patient is on day 3 of antibiotics but still has fever and crackles. What now?",
+    options: [
+      "Keep waiting another week",
+      "Reassess now — no improvement by 48–72 hours needs review of the antibiotic or diagnosis",
+      "Stop the antibiotics",
+      "Discharge to rest at home",
+    ],
+    answer: [1],
+    explanation:
+      "Pneumonia should improve within 48–72 hours; failure to improve means reassess the antibiotic, the diagnosis, or complications.",
+    whyOthersWrong:
+      "Waiting risks sepsis; stopping breeds resistance; discharge is unsafe while febrile.",
+    principle: "No 48–72h improvement = reassess.",
+    reviewHref: "/learn/pneumonia",
+    reviewLabel: "Pneumonia → Response check",
+  },
+  {
+    id: "bp-3",
+    clinical: true,
+    subject: "Fundamentals of Nursing",
+    topic: "Blood Pressure",
+    format: "mcq",
+    stem: "A patient's BP reads 160/95. What should the nurse do before recording it as high?",
+    options: [
+      "Record it at once as hypertension",
+      "Repeat after rest with the correct cuff size and record the average",
+      "Tell the patient to relax and ignore it",
+      "Give BP medicine immediately",
+    ],
+    answer: [1],
+    explanation:
+      "One high reading is not hypertension — repeat after rest with the right cuff and confirm on repeat checks before diagnosing.",
+    whyOthersWrong:
+      "One-off readings mislead; ignoring misses real emergencies; nurses don't prescribe.",
+    principle: "High reading = repeat and confirm first.",
+    reviewHref: "/learn/blood-pressure",
+    reviewLabel: "BP → Accurate measurement",
+  },
+  {
+    id: "stroke-4",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Stroke",
+    format: "mcq",
+    stem: "A stroke patient is rushed for a CT scan. Why is the clock so urgent?",
+    options: [
+      "To bill the scan early",
+      "CT rules out bleeding — clot-busting treatment only works within a few hours of symptoms",
+      "So the patient can skip meals",
+      "To check the blood pressure",
+    ],
+    answer: [1],
+    explanation:
+      "CT separates bleeding from clot strokes fast; clot-busting treatment has a narrow time window from symptom start.",
+    whyOthersWrong:
+      "Billing, meals, and BP checks do not explain the urgency; every minute of delay costs brain.",
+    principle: "Time is brain — CT first, treat in window.",
+    reviewHref: "/learn/stroke",
+    reviewLabel: "Stroke → Emergency pathway",
+  },
+  {
+    id: "men-4",
+    subject: "Medical-Surgical Nursing",
+    topic: "Meningitis",
+    format: "mcq",
+    stem: "Who should receive preventive antibiotics after close contact with a meningitis patient?",
+    options: [
+      "Only the patient",
+      "Close contacts and household members, per public-health advice",
+      "The whole school",
+      "Nobody — it does not spread",
+    ],
+    answer: [1],
+    explanation:
+      "Close contacts (household, kissing, shared utensils) get preventive antibiotics per public-health guidance to stop spread.",
+    whyOthersWrong:
+      "The patient is already being treated; mass dosing is not advised; meningitis does spread via close contact.",
+    principle: "Protect close contacts fast.",
+    reviewHref: "/learn/meningitis",
+    reviewLabel: "Meningitis → Contact protection",
+  },
+  {
+    id: "asth-4",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Asthma",
+    format: "mcq",
+    stem: "A child uses a metered inhaler with a spacer. What is the correct technique?",
+    options: [
+      "Fire all puffs in at once, then breathe fast",
+      "Shake, one puff into the spacer, then slow steady breaths (or 5–10 tidal breaths) before the next puff",
+      "Breathe out into the spacer first",
+      "Use it only when symptoms are severe",
+    ],
+    answer: [1],
+    explanation:
+      "One puff at a time into the spacer with slow, steady breaths delivers the most medicine to the lungs.",
+    whyOthersWrong:
+      "Multiple puffs at once waste drug; fast or forceful breathing deposits it in the throat; spacer use is not just for emergencies.",
+    principle: "One puff, slow breaths, spacer every time.",
+    reviewHref: "/learn/asthma",
+    reviewLabel: "Asthma → Inhaler technique",
+  },
+  {
+    id: "dia-4",
+    subject: "Medical-Surgical Nursing",
+    topic: "Diarrhoea",
+    format: "mcq",
+    stem: "A mother asks how to make ORS correctly. What is the right answer?",
+    options: [
+      "A pinch of salt in any water",
+      "One full packet in the exact amount of clean water shown on the label",
+      "Mix it in milk",
+      "Sugar water is the same thing",
+    ],
+    answer: [1],
+    explanation:
+      "ORS packets are precisely balanced — one packet in the exact labelled amount of clean water; too little water makes it harmful.",
+    whyOthersWrong:
+      "Pinch-of-salt guesses are unsafe; milk and plain sugar water do not replace ORS salts.",
+    principle: "ORS: exact packet, exact water.",
+    reviewHref: "/learn/diarrhoea",
+    reviewLabel: "Diarrhoea → ORS preparation",
+  },
+  {
+    id: "copd-4",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "COPD",
+    format: "mcq",
+    stem: "Which is the best sign that COPD treatment is working?",
+    options: [
+      "Needing the reliever inhaler more often",
+      "Walking further with less breathlessness and fewer flare-ups",
+      "Never coughing at all",
+      "Lips turning blue",
+    ],
+    answer: [1],
+    explanation:
+      "Real control means better exercise tolerance and fewer exacerbations — not more reliever use, which signals worsening.",
+    whyOthersWrong:
+      "More reliever use, blue lips, or expecting zero cough all point the wrong way.",
+    principle: "Less breathlessness, fewer flares = control.",
+    reviewHref: "/learn/copd",
+    reviewLabel: "COPD → Control check",
+  },
+  {
+    id: "hi-4",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Head Injury",
+    format: "mcq",
+    stem: "A head-injury patient is allowed home. What must the family watch for?",
+    options: [
+      "Nothing — home means fully healed",
+      "Worsening headache, repeated vomiting, confusion, drowsiness, fits, or fluid from nose/ear — return at once",
+      "Only a fever",
+      "Only a sore scalp",
+    ],
+    answer: [1],
+    explanation:
+      "Discharged head injuries still need a watcher: worsening headache, repeated vomiting, confusion, drowsiness, fits, or clear fluid mean return urgently.",
+    whyOthersWrong:
+      "Home is not the same as healed; fever or scalp soreness alone miss the dangerous signs.",
+    principle: "Discharge ≠ discharge from danger.",
+    reviewHref: "/learn/head-injury",
+    reviewLabel: "Head Injury → Home safety",
+  },
+  {
+    id: "mal-4",
+    subject: "Medical-Surgical Nursing",
+    topic: "Malaria",
+    format: "mcq",
+    stem: "What is the best nightly protection against malaria for a child in a malaria area?",
+    options: [
+      "A fan in the room",
+      "Sleeping under an insecticide-treated net every night",
+      "Bitter herbs in drinks",
+      "Avoiding drinking water",
+    ],
+    answer: [1],
+    explanation:
+      "Insecticide-treated nets every night are the proven bed protection for children in malaria areas.",
+    whyOthersWrong:
+      "Fans, herbs, and water-avoidance do not stop mosquito bites; nets do.",
+    principle: "Net every night, child every night.",
+    reviewHref: "/learn/malaria",
+    reviewLabel: "Malaria → Prevention",
+  },
+  {
+    id: "hh-4",
+    clinical: true,
+    subject: "Fundamentals of Nursing",
+    topic: "Hand Hygiene",
+    format: "mcq",
+    stem: "A nurse removes gloves after patient care. What comes next?",
+    options: [
+      "Nothing — gloves fully protect",
+      "Clean hands right away — gloves can have tiny holes",
+      "Clean hands only if they look dirty",
+      "Clean hands at the end of the shift",
+    ],
+    answer: [1],
+    explanation:
+      "Gloves are not a substitute for hand hygiene — remove them and clean hands immediately; micro-holes can leak.",
+    whyOthersWrong:
+      "Waiting or skipping lets germs travel from gloves to the next patient.",
+    principle: "Off with gloves = on with hand hygiene.",
+    reviewHref: "/learn/hand-hygiene",
+    reviewLabel: "Hand Hygiene → After gloves",
+  },
+  {
+    id: "ulcer-4",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Ulcer",
+    format: "mcq",
+    stem: "A patient with a known ulcer has black stools and feels dizzy on standing. What does this suggest?",
+    options: [
+      "Normal healing",
+      "Possible ongoing bleeding — check pulse and BP and escalate urgently",
+      "Too much iron",
+      "Just dehydration",
+    ],
+    answer: [1],
+    explanation:
+      "Black stools plus dizziness suggest digested blood from an ulcer — check vital signs and escalate; this can become an emergency.",
+    whyOthersWrong:
+      "Calling it healing, iron, or simple dehydration misses a bleed.",
+    principle: "Black stool + dizziness = possible bleed.",
+    reviewHref: "/learn/peptic-ulcer",
+    reviewLabel: "Peptic Ulcer → Bleeding signs",
+  },
+  {
+    id: "uti-4",
+    subject: "Medical-Surgical Nursing",
+    topic: "UTI",
+    format: "mcq",
+    stem: "What is the best urine specimen for a culture?",
+    options: [
+      "The first few drops",
+      "Midstream clean-catch urine in a sterile container",
+      "Any random sample works",
+      "Urine collected in a dirty cup",
+    ],
+    answer: [1],
+    explanation:
+      "Midstream clean-catch in a sterile container avoids skin germs contaminating the culture.",
+    whyOthersWrong:
+      "First drops carry urethral flora; random or dirty samples give false results.",
+    principle: "Culture = midstream, sterile, clean.",
+    reviewHref: "/learn/uti",
+    reviewLabel: "UTI → Specimen collection",
+  },
+  {
+    id: "epi-4",
+    clinical: true,
+    subject: "Medical-Surgical Nursing",
+    topic: "Epilepsy",
+    format: "mcq",
+    stem: "A patient with epilepsy asks about driving. What is the correct guidance?",
+    options: [
+      "Drive as normal",
+      "Do not drive until seizure-free for the period the law requires — check with the licensing authority",
+      "Only drive at night",
+      "Drive with a friend beside you",
+    ],
+    answer: [1],
+    explanation:
+      "Driving rules require a set seizure-free period (varies by country) and often telling the licensing body — check local law.",
+    whyOthersWrong:
+      "Driving early, at night, or with a friend does not meet legal or safety rules.",
+    principle: "Seizure-free period first, then drive.",
+    reviewHref: "/learn/epilepsy",
+    reviewLabel: "Epilepsy → Driving rules",
   },
 ];
 

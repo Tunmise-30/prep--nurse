@@ -1,43 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useLocalJSON, writeLocalJSON } from "../lib/local-store";
+
+const NO_SAVED: string[] = [];
+const NO_NOTES: Record<string, string> = {};
 
 export default function LessonTools({ lesson }: { lesson: string }) {
-  const [saved, setSaved] = useState(false);
-  const [note, setNote] = useState("");
+  const saved = useLocalJSON<string[]>("pn-bookmarks", NO_SAVED);
+  const notes = useLocalJSON<Record<string, string>>(
+    "pn-notes",
+    NO_NOTES
+  );
 
-  useEffect(() => {
-    try {
-      const b = JSON.parse(localStorage.getItem("pn-bookmarks") || "[]");
-      setSaved(b.includes(lesson));
-      setNote(localStorage.getItem(`pn-note-${lesson}`) || "");
-    } catch {
-      /* ignore */
-    }
-  }, [lesson]);
+  const isSaved = saved.includes(lesson);
+  const note = notes[lesson] || "";
 
   function toggleBookmark() {
-    try {
-      const b: string[] = JSON.parse(
-        localStorage.getItem("pn-bookmarks") || "[]"
-      );
-      const next = b.includes(lesson)
-        ? b.filter((x) => x !== lesson)
-        : [...b, lesson];
-      localStorage.setItem("pn-bookmarks", JSON.stringify(next));
-      setSaved(next.includes(lesson));
-    } catch {
-      /* ignore */
-    }
+    writeLocalJSON(
+      "pn-bookmarks",
+      isSaved
+        ? saved.filter((x) => x !== lesson)
+        : [...saved, lesson]
+    );
   }
 
   function saveNote(v: string) {
-    setNote(v);
-    try {
-      localStorage.setItem(`pn-note-${lesson}`, v);
-    } catch {
-      /* ignore */
-    }
+    writeLocalJSON("pn-notes", { ...notes, [lesson]: v });
   }
 
   return (
@@ -46,9 +35,11 @@ export default function LessonTools({ lesson }: { lesson: string }) {
         onClick={toggleBookmark}
         className="rounded-xl border px-4 py-2 text-sm"
       >
-        {saved ? "★ Saved — tap to remove" : "☆ Save this lesson"}
+        {isSaved ? "★ Saved — tap to remove" : "☆ Save this lesson"}
       </button>
-      <label className="mt-3 block text-sm font-bold">My notes</label>
+      <label className="mt-3 block text-sm font-bold">
+        My notes
+      </label>
       <textarea
         value={note}
         onChange={(e) => saveNote(e.target.value)}
@@ -56,6 +47,11 @@ export default function LessonTools({ lesson }: { lesson: string }) {
         rows={3}
         className="mt-1 w-full rounded-xl border px-3 py-2 text-sm"
       />
+      <p className="mt-2 text-xs opacity-60">
+        <Link href="/saved" className="underline">
+          See all saved lessons →
+        </Link>
+      </p>
     </div>
   );
 }
