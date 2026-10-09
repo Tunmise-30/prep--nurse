@@ -1,0 +1,13 @@
+{
+	"appId": "com.prepnurse.app",
+	"appName": "Prep Nurse",
+	"webDir": "public",
+	"server": {
+		"androidScheme": "https",
+		"url": "https://ubiquitous-starlight-594033.netlify.app",
+		"cleartext": false
+	},
+	"android": {
+		"allowMixedContent": false
+	}
+}

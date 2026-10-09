@@ -1,0 +1,9 @@
+# Local Netlify folder
+.netlify
+
+# Build logs / temp
+tailwindcss-*.log
+devserver*.log
+
+# APK build output (rebuild with build-apk.ps1)
+PREP-NURSE-APK/*.apk

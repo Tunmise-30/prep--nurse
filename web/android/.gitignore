@@ -1,0 +1,26 @@
+# Gradle / Android build output
+build/
+.gradle/
+local.properties
+
+# Signing material never belongs in git
+*.keystore
+*.jks
+keystore.properties
+
+# Native build output
+app/build/
+.cxx/
+
+# Captures / device logs
+*.hprof
+
+# Node (Capacitor CLI)
+node_modules/
+
+# Generated Capacitor copies
+android/app/src/main/assets/public
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/app/capacitor.build.gradle
+android/capacitor.settings.gradle
